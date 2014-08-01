@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- 用户信息 -->
+	<package name="user_page" namespace="/user" extends="sdk">
+
+		<!-- 用户列表 -->
+		<action name="userManager" class="com.joke.action.user.UserManageAction"
+			method="pageSkip">
+			<result name="success"> /jsp/userManage/userManager.jsp</result>
+		</action>
+
+		<!-- 添加用户页面 -->
+		<action name="addUserPage" class="com.joke.action.user.UserManageAction"
+			method="pageSkip">
+			<result name="success"> /jsp/userManage/userAdd.jsp</result>
+		</action>
+		<!-- 修改用户密码页面 -->
+		<action name="userPwdEditPage" class="com.joke.action.user.UserManageAction"
+			method="pageSkip">
+			<result name="success"> /jsp/userManage/userPwdEdit.jsp</result>
+		</action>
+		<!-- 编辑用户页面 -->
+		<action name="updateUserPage" class="com.joke.action.user.UserManageAction"
+			method="pageSkip">
+			<result name="success"> /jsp/userManage/userEdit.jsp</result>
+		</action>
+
+		<!-- 编辑用户页面 -->
+		<action name="viewUserPage" class="com.joke.action.user.UserManageAction"
+			method="pageSkip">
+			<result name="success"> /jsp/userManage/userView.jsp</result>
+		</action>
+
+		<!-- 扣量管理 -->
+		<action name="showDeductInfo" class="com.joke.action.user.UserManageAction"
+			method="pageSkip">
+			<result name="success">/jsp/userManage/showDeductInfo.jsp</result>
+		</action>
+
+		<!-- 扣量管理 -->
+		<action name="personInfo" class="com.joke.action.user.UserManageAction"
+			method="pageSkip">
+			<result name="success">/jsp/userManage/perInfoPage.jsp</result>
+		</action>
+
+		<!-- 修改通知地址页面 -->
+		<action name="updateChAddress" class="com.joke.action.user.UserManageAction"
+			method="pageSkip">
+			<result name="success">/jsp/userManage/updateChAddressPage.jsp</result>
+		</action>
+
+	</package>
+
+	<!-- 用户信息 -->
+	<package name="user" namespace="/user" extends="sdk,json-default">
+
+		<default-interceptor-ref name="roleCheckStack" />
+
+		<!-- 用户列表 -->
+		<action name="userlist" class="com.joke.action.user.UserManageAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,totalProperty,root.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 删除用户 -->
+		<action name="delUser" class="com.joke.action.user.UserManageAction"
+			method="updateUserStatu">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 删除用户 -->
+		<action name="delchannel" class="com.joke.action.user.UserManageAction"
+			method="updateUChannelStatus">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 添加用户 -->
+		<action name="insertUser" class="com.joke.action.user.UserManageAction"
+			method="insertUser">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 修改用户密码 -->
+		<action name="userPwdEdit" class="com.joke.action.user.UserManageAction"
+			method="userPwdEdit">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+		<!-- 根据id获取用户信息 -->
+		<action name="getUserInfoById" class="com.joke.action.user.UserManageAction"
+			method="userInfoById">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message,data.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 更新用户 -->
+		<action name="updateUser" class="com.joke.action.user.UserManageAction"
+			method="updateUser">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 添加渠道应用 -->
+		<action name="addChannelApp" class="com.joke.action.user.UserManageAction"
+			method="addChannelApp">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 获得扣量信息 -->
+		<action name="getDeductInfo" class="com.joke.action.user.UserManageAction"
+			method="getDeductInfo">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message,deduct</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 更改扣量信息 -->
+		<action name="updateDeduct" class="com.joke.action.user.UserManageAction"
+			method="updateDeduct">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+	</package>
+
+</struts>

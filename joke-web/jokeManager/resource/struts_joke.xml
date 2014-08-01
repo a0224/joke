@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="page" extends="sdk" namespace="/page">
+
+		<action name="*" class="com.joke.action.joke.JokeAction"
+			method="pageSkip">
+			<result name="success">/jsp/joke/{1}.jsp</result>
+		</action>
+
+	</package>
+
+	<package name="joke" namespace="/joke" extends="sdk">
+
+		<action name="*" class="com.joke.action.joke.JokeAction"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,totalProperty,root.*,data.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+	</package>
+
+	<package name="news" namespace="/news" extends="sdk">
+
+		<default-interceptor-ref name="sessionStack" />
+
+		<action name="*" class="com.joke.action.joke.NewsAction"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,totalProperty,root.*,data.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+	</package>
+
+	<package name="sexy" namespace="/sexy" extends="sdk">
+
+		<default-interceptor-ref name="sessionStack" />
+
+		<action name="*" class="com.joke.action.joke.SexyAction"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,totalProperty,root.*,data.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+	</package>
+	
+	<package name="app" namespace="/app" extends="sdk">
+
+		<default-interceptor-ref name="sessionStack" />
+
+		<action name="*" class="com.joke.action.joke.AppAction"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,totalProperty,root.*,data.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+	</package>
+	
+	<package name="jar" namespace="/jar" extends="sdk">
+
+		<default-interceptor-ref name="sessionStack" />
+
+		<action name="*" class="com.joke.action.joke.JarAction"
+			method="{1}">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,totalProperty,root.*,data.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+	</package>
+
+</struts>

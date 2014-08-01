@@ -1,0 +1,422 @@
+CMS.page.userName = A('#userName');
+
+CMS.page.setHours = function(){
+	var hours = parseInt((new Date()).getHours()) + 1, title = '你好'; 
+	// 上午好，6-11点；中午好11-13点；下午好13-15点；傍晚好15-17点；晚上好17-23点；深夜了，注意休息23-6点；
+	if(hours <=11 && hours > 6){
+		title = '早上好'
+	} else if(hours <= 13 && hours > 11){
+		title = '中午好'
+	} else if(hours <= 17 && hours > 13){
+		title = '下午好'
+	} else if(hours <= 23 && hours > 17){
+		title = '晚上好'
+	} else if(hours <= 6 && hours > 0){
+		title = '深夜了，注意休息'
+	} 
+	A('#timeCode').html(title+",");
+};
+
+CMS.page.cookieEnable = function(){
+    var result=false;
+    if(navigator.cookiesEnabled)
+        return true;
+    document.cookie = "testcookie=yes;";
+    var cookieSet = document.cookie;
+    if (cookieSet.indexOf("testcookie=yes") > -1)
+          result = true;
+    document.cookie = "";
+    return result;
+};
+
+
+A(document).ready(function() {
+	CMS.page.setHours();
+	CMS.core.isIE6 && DD_belatedPNG.fix('.headerlogo');
+	CMS.main.iframe = A("#mainIframe");
+	var mainHeight = A("#maincontent").height();
+	A(window).resize(function() {
+		CMS.main.iframe.height(A("#maincontent").height());
+	});
+	// 一分钟执行一次
+	setInterval(CMS.page.setHours, 60000);
+
+	var leftBox = A("#leftbox-submenu"), subHtml = [];
+	if (!leftBox.find("li").length) {
+		for (var i = 0; i < CMS.setting.initSubNum; i++) {
+			subHtml.push('<li style="display:none;" navName="">');
+			subHtml.push('  <a href="javascript:" hideFocus="true" url=""><span>&nbsp;</span></a><b>&nbsp;</b>'); // <div>&nbsp;</div>
+			subHtml.push('</li>');
+		}
+		leftBox.append(subHtml.join(""));
+	}
+
+	CMS.main.shrink = A("#shrink"); 
+	CMS.setting.canContract && CMS.main.shrink.show();
+	CMS.main.leftBox = A("#leftbox");
+	CMS.main.leftNav = A(".submenu li");
+	CMS.main.sitemap = A("#sitemap label.navsti");
+	CMS.main.mask = A("#mainmask"); 
+	CMS.main.appmanage = A(".appmanage");
+	CMS.main.maincontent = A("#maincontent");
+	CMS.main.managebody = A(".managebody");
+	CMS.main.meunwarpper = A("#meunwarpper");
+	CMS.main.openFlag = true;
+	CMS.main.leftWidth = CMS.setting.subCloseWidth;
+	CMS.main.timeout = null;
+	CMS.main.resizeTimeout = null;
+	CMS.main.loadTimeout = null;
+	CMS.main.selected = CMS.main.leftNav.eq(0) || null;
+	CMS.main.selectedMeun = 0;
+	CMS.main.diag = null;
+	
+	CMS.main.mainFG = (CMS.core.isIE6 || CMS.core.isIE7) && 4 || 7;
+	
+//	if (!(CMS.core.isIE6 || CMS.core.isIE7)) {
+//		A("#sitemap .l, #sitemap .b").remove();
+//	}
+	var navHtml = [],
+	navChilds = [];
+	CMS.main.navMap = new CMS.util.Map();  
+	CMS.util.HttpAjax(contextPath + '/getUserInfo.html',"{}", function(navs){
+		CMS.page.admin = navs.data;
+		CMS.page.userName.html(navs.loginName || 'admin');
+		if(navs.result != 'success') navs.root = [];
+		navs = navs.root || [];  
+		A.each(navs, function(index, nav) { 
+			if(nav.title == '统计分析'){ 
+				CMS.core.reportCount = (nav.childs || []).length; 
+			}
+			navHtml.push('<li tabindex=', index, '><a href="javascript:" hideFocus=true class="', (!index ? "onlink": ""), '">', nav.title, '</a></li>');
+			CMS.main.navMap.put(index, nav.childs || [], [nav.title, nav.url]);
+			if (!index) readSubmenu(index);
+		});
+		CMS.main.meunwarpper.empty().append(navHtml.join(""));
+	}, {
+		complete: function(){
+			
+			/**CMS.util.HttpAjax(contextPath + '/cloud/categoryList.html',"{}", function(data){
+				CMS.page.resTypeArr = (data.result == 'success') ? data.root : []; 
+				CMS.page.resTypeArr.by = [[{id:0, name:"--请选择--"}],[{id:0, name:"--请选择--"}]]; 
+				A.each(CMS.page.resTypeArr, function(i, type){
+					if(type.parent != 1 && type.parent != 2) return;
+					CMS.page.resTypeArr.by[type.parent - 1].push(type); 
+				}) 
+			}, {}, true);**/
+			setTimeout(function(){
+				A("#apploading").fadeOut('normal');
+				A(".appMain").show();
+				CMS.main.iframe.height(CMS.main.maincontent.height());
+			}, 100);
+		}
+	});
+});
+
+
+
+// 初始化MAIN页面的事件
+
+function docClickEvent(e){
+ 
+};
+
+function openMenu() {
+	clearTimeout(CMS.main.timeout);
+
+	if (CMS.main.leftBox.find("li:visible").length > 0 && CMS.main.selected && CMS.main.selected.hasClass('onselect')) {
+		CMS.main.selected.addClass("onlink").siblings().removeClass("onlink");
+	} else {
+		CMS.main.leftBox.find("li").removeClass("onlink");
+	}
+
+	CMS.main.leftWidth = CMS.setting.subOpenWidth;
+	CMS.main.leftBox.css({
+		"width": CMS.main.leftWidth
+	}).removeClass("leftclose");
+	CMS.main.leftBox.css({
+		"border-right": "none"
+	});
+	CMS.main.leftBox.find("li span, i").show();
+	CMS.main.leftBox.find("h3 span").html("功能菜单").parent().css({
+		"margin-left": 15
+	});
+	CMS.main.leftBox.find(".onlink").css({
+		left: 0
+	});
+	CMS.main.leftBox.find("li:visible div").css({
+		display: "none"
+	});
+
+	CMS.main.shrink.css({
+		width: 100,
+		"margin-left": 18
+	}).find("span").show().end().find("div").css({
+		"background-position": "0 -72px"
+	})
+};
+
+function closeMenu() {
+	CMS.main.leftWidth = CMS.setting.subCloseWidth;
+	CMS.main.leftBox.css({
+		"width": CMS.main.leftWidth,
+		"border-right": "1px #A3CCEA solid"
+	}).addClass("leftclose");
+ 
+	CMS.main.leftBox.find("li span, i").hide();
+	CMS.main.leftBox.find("h3 span").html("菜单").parent().css({
+		"margin-left": 2
+	});
+	CMS.main.leftBox.find(".onlink").css({
+		left: 1
+	});
+
+	if (CMS.main.leftBox.find("li:visible").length > 0) {
+		CMS.main.selected.find("div").css({
+			display: "block"
+		});
+	} else {
+		CMS.main.leftBox.find("li div").css({
+			display: "none"
+		});
+	}
+
+	CMS.main.shrink.css({
+		width: 20,
+		"margin-left": 10
+	}).find("span").hide().end().find("div").css({
+		"background-position": "0 -108px"
+	})
+};
+
+function resize() {
+	setTimeout(function() {
+		var width = CMS.core.Body.width() - CMS.main.leftWidth;
+		A("#sitemap, #rightbox").css({
+			"width": width + CMS.main.mainFG,
+			left: CMS.main.leftWidth - 1
+		});
+		CMS.main.iframe.css({
+			width: width
+		});
+	}, CMS.setting.timeoutOfwindowResize);
+};
+
+function changeMenu(index){
+	// 判断是否在加载页面时显示mask
+	showLoadMask(); 
+	CMS.main.selectedMeun = index;
+	CMS.main.leftNav.removeClass("onlink onselect").hide();
+	CMS.main.meunwarpper.find("li").eq(index)
+		.find("a").addClass("onlink").parent().siblings().find("a").removeClass("onlink")
+};
+
+function readSubmenu(index, navIndex, data, callUrl) {
+	if(CMS.util.isNumber(index)){
+		index = index || 0;
+	}else{
+		var navs = CMS.page.admin.data || [];
+		var count = navs.length;
+		for(var i=0; i<count; i++){
+			if(navs[i].title == index){
+				index = i;
+				break;
+			}
+		}
+		index = CMS.util.isNumber(index)?index : 0;
+	}
+	navIndex = navIndex || 0;
+	changeMenu(index);
+  
+	var subHtml = [],
+		navs = CMS.main.navMap.getValue(index),
+		navUrl = CMS.main.navMap.getOtherVal(index)[1], 
+		first = navs[navIndex],
+		len = navs.length,
+		leftBox = A("#leftbox-submenu"),
+		lis = leftBox.find("li");
+		
+	CMS.page.navLen = navs.length;
+
+	A(lis.slice(0, len)).show();
+	A(lis.slice(len)).hide();
+	
+	if (len > 0) {
+		A.each(navs, function(i, sub) { 
+			lis.eq(i).show().addClass((!i && !navUrl) ? "onlink onselect": "").removeClass(i ? "onlink onselect": "")
+				.attr({
+					"navName":sub.title, 
+					"isdialog": sub.dialog || false, 
+					"width":sub.width, 
+					"height": sub.height})
+				.find("a").attr("url", sub.url).find("span")
+				.text(sub.title).end()// .next().text(sub.title).hide();
+		});
+		CMS.main.selected = (len != 0 ? lis.eq(navIndex) : null); 
+		
+		if (!CMS.main.openFlag) {  
+			CMS.main.leftWidth = CMS.setting.subCloseWidth;
+			// CMS.main.selected.find("div").show();
+		} else { 
+			navIndex && CMS.main.selected && CMS.main.selected.addClass("onlink onselect")
+				.siblings().removeClass("onlink onselect"); 
+			CMS.main.leftWidth = CMS.setting.subOpenWidth;
+			leftBox.find("li div").hide();
+		}
+		resize();
+	} else {
+		CMS.main.mask.hide();  
+	} 
+
+	if(callUrl){
+		CMS.main.iframe.attr({"frameborder":0}).css("border", 0)[0]
+			.contentWindow.location.replace(callUrl);
+		changeSite();
+		return;
+	}
+
+	if(navUrl && typeof navIndex == 'number' && navIndex == 0){  
+		// 禁止浏览器的前进 后退操作
+		CMS.main.iframe.attr({"frameborder":0}).css("border", 0)[0]
+			.contentWindow.location.replace(navUrl + ((data && navUrl) ? ("&" + A.param(data)) : CMS.args.EMPTY))
+		changeSite();
+		return;
+	}  
+	
+	CMS.main.selected && CMS.main.selected.addClass('onlink onselect').css({
+		left: !CMS.main.openFlag ? 1 : 0
+	});
+	 
+	if(navs[navIndex] && navs[navIndex].url) { 
+		if(CMS.main.selected.attr("isdialog") == "yes" && first && CMS.setting.canWinForNav){
+			dialog(first.title, first.url, first.width, first.height);
+			return;
+		}
+		showLoadMask(); 
+		// 禁止浏览器的前进 后退操作
+		CMS.main.iframe.attr({"frameborder":0}).css("border", 0)[0]
+			.contentWindow.location.replace(navs[navIndex].url + 
+			((data && navs[navIndex].url) ? ("&" + A.param(data)) : CMS.args.EMPTY));
+			
+		changeSite(first.title, first.url);
+	}
+};
+
+
+function dialog(title, url, width, height){
+	if(!CMS.main.diag) 
+		CMS.main.diag = new Dialog();
+	if(!CMS.setting.fullScreenWin){
+		CMS.main.diag.Width = parseInt(width);
+		CMS.main.diag.Height = parseInt(height);
+	} else {
+		CMS.main.diag.Width = CMS.core.Body.width() - 50;
+		CMS.main.diag.Height = CMS.core.Body.height() - 50;
+	}
+	CMS.main.diag.Title = title; 
+	CMS.main.diag.URL = url;
+	CMS.main.diag.show();
+};
+
+function showLoadMask(){  
+	// CMS.setting.showLoadMask && CMS.main.mask.height(CMS.core.Body.height() -
+	// 100).show();
+};
+
+// function changeSite(navName, url){
+// if(!arguments.length) {
+// navName = '首页';
+// }
+// CMS.main.sitemap.html(CMS.main.navMap.getOtherVal(CMS.main.selectedMeun)[0] +
+// ' &gt; '+ navName);
+// };
+
+
+CMS.page.reSetPassword = function(){
+	if(!CMS.page.admin.id){
+		Dialog.alert("用户ID没有获取到");
+		return
+	} 
+	CMS.page.editWin = new Dialog();
+	CMS.page.editWin.Width = 520;
+	CMS.page.editWin.Height = 120;
+	CMS.page.editWin.Title = "重置密码"; 
+	CMS.page.editWin.URL = contextPath + "/user/userPwdEditPage.html";
+	CMS.page.editWin.OKEvent = function(){
+		var inner = CMS.page.editWin.innerFrame.contentWindow, 
+			innerDoc = inner.document; 
+		CMS.page.getFormData = inner.CMS.page.getFormData(); 
+		if(CMS.page.getFormData){
+			CMS.util.HttpAjax(contextPath +'/userPwdEdit.html', 
+				JSON.stringify({id: CMS.page.admin.id, userPaWord: CMS.page.getFormData}), 
+			function(data){
+			    if(data.result == 'success'){
+			   		Dialog.alert('重置用户密码成功，将在下次登录时生效!', function(){ 
+			    		CMS.page.editWin.close(); 
+			   		})
+			    } else {
+			    	Dialog.alert(data.message);
+			   	}
+			})
+		}
+	}; 
+	CMS.page.editWin.OnLoad = function(){
+		var inner = CMS.page.editWin.innerFrame.contentWindow, 
+			innerDoc = inner.document; 
+		inner.CMS.page.setFormData(CMS.page.admin);
+	};
+	CMS.page.editWin.show();
+};
+
+CMS.page.loginOut = function(){ 
+	Dialog.confirm('提示：您确定要退出系统吗？',function(){
+		CMS.util.HttpAjax(contextPath +'/loginOut.html',"{}", function(data){
+		     if(data.result == 'success'){
+		     	 window.location.replace(contextPath +"/index.html"); 
+		     } else {
+		     	 Dialog.alert('退出系统失败，请联系管理员！')
+		     }
+		})
+	}, CMS.args.FUN)
+};
+
+
+CMS.page.zshl = function(){
+	CMS.util.HttpAjax(contextPath + '/ad_resource_manage/ad_resource_list/ignoreTips.do', function(data){
+		A('#tipDialog').fadeOut(1000);
+	})
+};
+
+
+CMS.page.getNews = function(){
+	A('#tipDialog').fadeOut(1000);
+	
+	var childWindow = CMS.main.iframe[0].contentWindow;
+	
+	if(childWindow){
+		var doc = childWindow.document.body;
+		childWindow.CMS.page.grid.reload(contextPath + "/ad_resource_manage/ad_resource_list/listAdResource.do", {publishFlag: 0});
+		
+		
+		A('.showBy', A(doc)).hide();
+		childWindow.CMS.page.resTypeEle.hide();
+		A('#resName', A(doc)).val(CMS.args.EMPTY);
+		childWindow.CMS.page.resFromCombox.setValue(CMS.args.EMPTY);
+		childWindow.CMS.page.resCombox.setValue(CMS.args.EMPTY);
+		 
+		setTimeout(function(){
+			childWindow.CMS.page.resTypeCombox.setValue(CMS.args.EMPTY);
+			childWindow.CMS.page.publishFlagCombox.setValue(0);
+		}, 100);  
+		
+		childWindow.CMS.page.gridData.type = null;
+		childWindow.CMS.page.gridData.categoryId = ""; 
+		childWindow.CMS.page.gridData.categoryParentId = "";
+		childWindow.CMS.page.gridData.resGrade = "";
+		childWindow.CMS.page.gridData.recommendType = "";
+		childWindow.CMS.page.gridData.publishFlag = 0; 
+	}
+};
+
+CMS.page.closeDialog = function(){
+	A('#tipDialog').fadeOut(1000);
+}

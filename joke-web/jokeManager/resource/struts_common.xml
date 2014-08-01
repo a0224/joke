@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<package name="jsp_page" extends="sdk" namespace="jsppage">
+
+		<action name="*_*" class="com.joke.action.BaseAction" method="pageSkip">
+			<result name="success">/jsp/{1}/{2}.jsp</result>
+		</action>
+
+	</package>
+
+	<package name="action" extends="sdk" namespace="action">
+
+		<action name="*_*" class="com.joke.action.joke.{1}Action"
+			method="{2}">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,totalProperty,root.*,data.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="syn" namespace="/syn" extends="sdk">
+
+		<!-- 登陆 -->
+		<action name="mtkSyn" class="cn.joy.sdk.action.syn.SynAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+	</package>
+	<package name="upload" namespace="/upload" extends="sdk">
+		<action name="*" class="com.joke.action.upload.FileUploadAction"
+			method="{1}">
+			<!-- 动态设置savePath的属性值 -->
+			<param name="savePath">images</param>
+			<result name="success" type="json">
+				<param name="includeProperties">*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="includeProperties">status,message</param>
+			</result>
+		</action>
+
+	</package>
+</struts>

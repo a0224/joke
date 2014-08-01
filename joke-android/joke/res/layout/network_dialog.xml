@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dp" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:paddingBottom="7dp"
+            android:textColor="#f8f8f8"
+            android:text="网络连接失败"
+            android:textSize="22sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#444444" >
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/no_network_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:textColor="#e2e2e2"
+            android:text="服务器断开连接(显示本地数据)"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" >
+
+        <Button
+            android:id="@+id/network_continue"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight=".3"
+            android:background="@drawable/btn_selector"
+            android:text="继续"
+            android:textColor="#e7e6e6" />
+
+        <Button
+            android:id="@+id/network_setting"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight=".3"
+            android:background="@drawable/btn_selector"
+            android:text="设置网络"
+            android:textColor="#e7e6e6" />
+
+        <Button
+            android:id="@+id/network_exit"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight=".3"
+            android:background="@drawable/btn_selector"
+            android:text="退出"
+            android:textColor="#e7e6e6" />
+    </LinearLayout>
+
+</RelativeLayout>

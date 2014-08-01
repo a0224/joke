@@ -1,0 +1,22 @@
+<resources>
+    <dimen name="right_menu_list_item_height">50dip</dimen>
+    <dimen name="right_menu_list_icon_size">30dip</dimen>
+    <dimen name="right_menu_list_txt_size">25sp</dimen>
+    <dimen name="right_menu_grid_txt_size">13sp</dimen>
+    
+    <dimen name="list_item_joke_title_txt_size">12sp</dimen>
+    <dimen name="list_item_joke_content_txt_size">18sp</dimen>
+    
+    <dimen name="list_item_headlines_title_txt_size">18sp</dimen>
+    <dimen name="list_item_headlines_content_txt_size">16sp</dimen>
+    
+    <dimen name="list_item_sexy_title_txt_size">18sp</dimen>
+    <dimen name="list_item_sexy_content_txt_size">16sp</dimen>
+    
+    <dimen name="list_item_source_txt_size">10sp</dimen>
+    
+    <dimen name="publish_send_layout_height">70dip</dimen>
+    <dimen name="publish_send_images_height">56dip</dimen>
+    <dimen name="publish_send_btn_height">30dip</dimen>
+    
+</resources>

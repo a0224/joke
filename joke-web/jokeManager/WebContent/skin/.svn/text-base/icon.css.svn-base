@@ -1,0 +1,40 @@
+.user{background:url("../icon/user.gif") no-repeat 1px 0}
+.user-add{background:url("../icon/user-add.gif") no-repeat 1px 0}
+.user-del{background:url("../icon/user-del.gif") no-repeat 1px 0}
+.user-edit{background:url("../icon/user-edit.gif") no-repeat 1px 0}
+.user-stop{background:url("../icon/user-stop.gif") no-repeat 1px 0}
+.user-power{background:url("../icon/user-power.gif") no-repeat 1px 0}
+
+
+.form-add{background:url("../icon/form-add.gif") no-repeat 1px 0}
+.form-del{background:url("../icon/form-del.gif") no-repeat 1px 0}
+.form-edit{background:url("../icon/form-edit.gif") no-repeat 1px 0}
+
+.char{background:url("../icon/char.gif") no-repeat 1px 0}
+.char-add{background:url("../icon/char-add.gif") no-repeat 1px 0}
+.char-del{background:url("../icon/char-del.gif") no-repeat 1px 0}
+.char-edit{background:url("../icon/char-edit.gif") no-repeat 1px 0}
+
+.db{background:url("../icon/db.gif") no-repeat 1px 0}
+.db-add{background:url("../icon/db-add.gif") no-repeat 1px 0}
+.db-del{background:url("../icon/db-del.gif") no-repeat 1px 0}
+.db-edit{background:url("../icon/db-edit.gif") no-repeat 1px 0}
+
+.file{background:url("../icon/file.gif") no-repeat 1px 0}
+.file-add{background:url("../icon/file-add.gif") no-repeat 1px 0}
+.file-del{background:url("../icon/file-del.gif") no-repeat 1px 0}
+.file-edit{background:url("../icon/file-edit.gif") no-repeat 1px 0}
+.file-find{background:url("../icon/file-find.gif") no-repeat 1px 0}
+.file-exc{background:url("../icon/file-exc.gif") no-repeat 1px 0}
+.file-word{background:url("../icon/file-word.gif") no-repeat 1px 0}
+.file-save{background:url("../icon/file-save.gif") no-repeat 1px 0}
+
+
+.file-1{background:url("../icon/file-1.gif") no-repeat 1px 0}
+.file-2{background:url("../icon/file-2.gif") no-repeat 1px 0}
+.file-3{background:url("../icon/file-3.gif") no-repeat 1px 0}
+.file-4{background:url("../icon/file-4.gif") no-repeat 1px 0}
+.file-5{background:url("../icon/file-5.gif") no-repeat 1px 0}
+.file-6{background:url("../icon/file-6.gif") no-repeat 1px 0}
+.file-7{background:url("../icon/file-7.gif") no-repeat 1px 0}
+.file-8{background:url("../icon/file-8.gif") no-repeat 1px 0}

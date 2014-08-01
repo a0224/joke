@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/cc.joke"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <!-- 引用头部 -->
+
+    <include layout="@layout/head" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        
+        <cc.joke.view.TitleFlowIndicator
+            android:id="@+id/vfc"
+            android:layout_width="fill_parent"
+            android:layout_height="36dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/black"
+            app:clipPadding="5dp"
+	        app:footerLineHeight="2dp"
+	        app:selectedSize="18sp"
+	        app:textSize="18sp"
+	        android:visibility="visible"
+	        app:titlePadding="10dp">
+
+        </cc.joke.view.TitleFlowIndicator>
+        
+        <cc.joke.view.MyViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/vfc" >
+
+        </cc.joke.view.MyViewPager>
+
+        <ImageView
+            android:id="@+id/seekBar"
+            android:layout_width="100dp"
+            android:layout_height="6dp"
+            android:background="#ff7300"
+            android:layout_marginTop="29dp"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+        />
+    </RelativeLayout>
+
+</LinearLayout>

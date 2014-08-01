@@ -1,0 +1,511 @@
+<%@ page  contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%
+	String contextPath = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ contextPath + "/";
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<meta name="language" content="en" />
+<base href="<%=basePath%>" />
+<title>激动云管理系统</title>
+<script>
+
+
+	contextPath="<%=request.getContextPath()%>";
+	jsessionid="<%=session.getId()%>";
+</script>
+<link rel="stylesheet" type="text/css" href="skin/main.css" />
+<style type="text/css">
+.imgwapper,.imgwapper img {
+	width: 200px;
+	height: 333px;
+	overflow: hidden;
+}
+
+.templateItem {
+	position: relative;
+}
+
+.templateHover {
+	width: 208px;
+	height: 333px;
+	position: absolute;
+	z-index: 9999; +
+	left: 0;
+	display: none;
+}
+
+.templateHover:hover {
+	cursor: pointer;
+}
+
+.templateHover div.bg {
+	width: 200px;
+	height: 100%;
+	margin: 4px;
+	background-color: #000;
+	opacity: 0.6;
+	filter: alpha(opacity =  60);
+	position: absolute;
+	z-index: 0; +
+	left: 0;
+}
+
+.templateHover div.content {
+	position: relative;
+	padding: 5px 2px;
+	text-align: left;
+}
+
+.templateInfo li.name {
+	text-align: left;
+	color: #f3f3f3;
+	font-family: '微软雅黑', serif, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0 5px;
+}
+
+.templateInfo li.desc {
+	text-align: left;
+	color: #dfdfdf;
+	font-size: 12px;
+	min-height: 150px;
+	_height: 100px;;
+	margin: 0 5px;
+}
+
+.templateInfo li.zoomIn {
+	text-align: center;
+}
+
+table a.btn {
+	display: block;
+	width: 91px;
+	height: 30px;
+	line-height: 30px;
+	margin: 10px auto;
+	background-image:
+		url('images/choose_btn.png');
+	text-align: center;
+	font-family: '微软雅黑', serif, sans-serif;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+table a.btn:link {
+	background-image:
+		url('images/choose_btn.png');
+}
+
+table a.btn:visited {
+	background-image:
+		url('images/choose_btn.png');
+}
+
+table a.btn:hover {
+	background-image:
+		url('images/choose_btn_hover.png');
+}
+
+table a.btn:active {
+	background-image:
+		url('images/choose_btn_click.png');
+}
+
+table td.version {
+	padding: 5px;
+	font-weight: bold;
+	color: #ff6c0b;
+}
+
+#noTemplate {
+	height: 200px;
+	line-height: 200px;
+	text-align: center;
+	font-size: 16px;
+	display: none;
+}
+
+#tab a.zbutton.current span {
+	color: #07f;
+	!
+	important
+}
+
+#templateWrapper {
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+#generalTemplates,#customTemplates {
+	text-align: center;
+	margin: 5px auto;
+	width: 208px;
+}
+
+#generalTemplates li.radius4,#customTemplates li.radius4 {
+	margin-bottom: 15px;
+}
+
+.templateItem {
+	width: 208px;
+}
+</style>
+</head>
+<body class="body">
+
+	<!-- 暂时屏蔽
+<div class="" style="margin: 10px;">
+<div class="tabwrapper barwapper clearfix radius4"
+ style="border: 1px solid #DFDFDF; box-shadow: 0 5px 15px #F3F6FA">
+<a href="javascript:" class="tabbutton general" tabIndex=0>
+	<b>桌 面</b>
+	<div class="right"></div>
+</a>
+<a href="javascript:window.parent.readSubmenu('桌面管理', '0', {}, 'admin.do?r=desktop_manage/desktop/desktop_model_wallpaper')"
+   class="tabbuttonnone custom" tabIndex=1>
+	<b>壁 纸</b>
+	<div class="right"></div>
+</a>
+
+<a href="javascript:window.parent.readSubmenu('桌面管理', '0', {}, 'admin.do?r=desktop_manage/desktop/desktop_model_lock')"
+   class="tabbuttonnone custom" tabIndex=1>
+	<b>锁 屏</b>
+	<div class="right"></div>
+</a>
+	</div>
+</div>
+-->
+
+	<div id="tab" class="butbarlayout2 clearfix"
+		style="margin: 10px; display: none;">
+		<a href="javascript:void(0);" class="zbutton general current"> <span>通用模板</span>
+
+			<div class="right"></div>
+		</a> <a href="javascript:void(0);" class="zbutton custom"> <span>定制模板</span>
+
+			<div class="right"></div>
+		</a>
+	</div>
+	<div class="bodywarpper fl" style="width: 230px;">
+		<div class="paneltitle mb10">选择模板</div>
+		<div id="templateTab" class="butbarlayout2 clearfix"
+			style="margin: 10px; display: none;">
+			<a href="javascript:void(0);" class="zbutton general current"> <span>通用模板</span>
+				<div class="right"></div>
+			</a> <a href="javascript:void(0);" class="zbutton custom"> <span>定制模板</span>
+				<div class="right"></div>
+			</a>
+		</div>
+		<div id="templateWrapper">
+			<ul id="generalTemplates"></ul>
+			<ul id="customTemplates"></ul>
+		</div>
+	</div>
+	<div id="skinWrapper" class="bodywarpper fl">
+		<div class="paneltitle mb10">选择主题</div>
+		<div id="skinTab" class="butbarlayout2 clearfix"
+			style="margin: 10px; display: none;">
+			<a href="javascript:void(0);" class="zbutton general current"> <span>本地主题</span>
+				<div class="right"></div>
+			</a> <a href="javascript:void(0);" class="zbutton custom"> <span>自定义主题</span>
+				<div class="right"></div>
+			</a>
+		</div>
+		<div id="localSkins"></div>
+		<div id="customSkins"></div>
+	</div>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0"
+		class="hidden" style="border-bottom: 1px solid #DFDFDF;">
+		<tr>
+			<td width="200px" class="pb10 item" valign="middle" align="center">
+				<div class="templateItem">
+					<div class="templateHover clickbig">
+						<div class="bg"></div>
+						<div class="content">
+							<ul class="templateInfo">
+								<li class="name"><label></label>&nbsp;<span>&nbsp;</span></li>
+								<li class="desc"><label></label>&nbsp;<span>&nbsp;</span></li>
+								<li class="zoomIn"><img
+									src="images/zoom_in.png"></li>
+							</ul>
+						</div>
+					</div>
+					<div>
+						<a href="javascript:;" class="imgwapper clickBig"> <img
+							class="radius4" src="images/nopicture.jpg" />
+						</a>
+					</div>
+				</div> <a href="javascript:void(0);" class="btn">选择该主题</a>
+			</td>
+			<td width="200px" class="pb10 item" valign="middle" align="center">
+				<div class="templateItem">
+					<div class="templateHover clickbig">
+						<div class="bg"></div>
+						<div class="content">
+							<ul class="templateInfo">
+								<li class="name"><label></label>&nbsp;<span>&nbsp;</span></li>
+								<li class="desc"><label></label>&nbsp;<span>&nbsp;</span></li>
+								<li class="zoomIn"><img
+									src="images/zoom_in.png"></li>
+							</ul>
+						</div>
+					</div>
+					<div>
+						<a href="javascript:;" class="imgwapper clickBig"> <img
+							class="radius4" src="images/nopicture.jpg" />
+						</a>
+					</div>
+				</div> <a href="javascript:void(0);" class="btn">选择该主题</a>
+			</td>
+			<td width="200px" class="pb10 item" valign="middle" align="center">
+				<div class="templateItem">
+					<div class="templateHover clickbig">
+						<div class="bg"></div>
+						<div class="content">
+							<ul class="templateInfo">
+								<li class="name"><label></label>&nbsp;<span>&nbsp;</span></li>
+								<li class="desc"><label></label>&nbsp;<span>&nbsp;</span></li>
+								<li class="zoomIn"><img
+									src="images/zoom_in.png"></li>
+							</ul>
+						</div>
+					</div>
+					<div>
+						<a href="javascript:;" class="imgwapper clickBig"> <img
+							class="radius4" src="images/nopicture.jpg" />
+						</a>
+					</div>
+				</div> <a href="javascript:void(0);" class="btn">选择该主题</a>
+			</td>
+			<td width="200px" class="pb10 item" valign="middle" align="center">
+				<div class="templateItem">
+					<div class="templateHover clickbig">
+						<div class="bg"></div>
+						<div class="content">
+							<ul class="templateInfo">
+								<li class="name"><label></label>&nbsp;<span>&nbsp;</span></li>
+								<li class="desc"><label></label>&nbsp;<span>&nbsp;</span></li>
+								<li class="zoomIn"><img
+									src="images/zoom_in.png"></li>
+							</ul>
+						</div>
+					</div>
+					<div>
+						<a href="javascript:;" class="imgwapper clickBig"> <img
+							class="radius4" src="images/nopicture.jpg" />
+						</a>
+					</div>
+				</div> <a href="javascript:void(0);" class="btn">选择该主题</a>
+			</td>
+		</tr>
+	</table>
+	<div id="noTemplate">暂无符合该站点的安装包模板!</div>
+
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/dialog/Drag.js"></script>
+	<script type="text/javascript" src="js/dialog/Dialog.js"></script>
+
+	<script type="text/javascript">
+		CMS.page.table = A("table");
+		CMS.page.localContainer = A("#localSkins");
+		CMS.page.customContainer = A("#customSkins");
+
+		CMS.page.root = [];
+
+		window.parent.window.CMS.main.sitemap.html('桌面管理'+ ' &gt; 新建安装包 &gt; 桌面');
+
+		CMS.page.initPage = function() {
+			
+			$.ajax({
+				   type: "POST",
+				   url: 'http://moguyun2-cms.plat56.com/ad_resource_manage/ad_resource_list/listAdResource.do',
+				   data: '{"sortName":"modifyDate","sortModel":"desc","pageNo":1,"pageSize":10,"type":3}&jsessionid=BBF8387AE6F0504EA5844E98D5A7D6DD.myjava',
+				   dataType:'JSON',
+				   Accept:'	application/json, text/javascript, */*; q=0.01',
+				   Referer:	'http://moguyun2-cms.plat56.com/admin.do?r=ad_manage/ad_res_manage/ad_list',
+				   success: function(msg){
+				     alert( "Data Saved: " + msg );
+				   }
+				});
+			
+
+		};
+
+		CMS.core.document.ready(CMS.page.initPage);
+
+		CMS.page.showSkins = function(templateId) {
+			CMS.util.HttpAjax(contextPath
+					+ '/desktop_manage/create_desktop/listSkins.do', JSON
+					.stringify({templateId : templateId}), function(data) {
+				if (data.result == 'success') {
+					var skins = data.root.skins || [];
+					CMS.page.localContainer.html('');
+					CMS.page.setupContainer(skins, CMS.page.localContainer, 4);
+				} else {
+					Dialog.alert(data.message || '获取主题失败！');
+				}
+			}, CMS.util.ajaxProcess());
+		};
+
+		CMS.page.setupContainer = function(skins, $wrapper, rowCount) {
+			var table = CMS.page.table.clone();
+			var rowNum = Math.ceil((skins.length / rowCount)) || 0;
+			for (j = 1; j < rowNum; j++) {
+				table.append(table.find('tr:last').clone());
+			}
+			if (skins.length % rowCount > 0) {
+				table.find('tr:last').find(
+						'td.item:gt(' + (skins.length % rowCount - 1) + ')')
+						.html('');
+			}
+			table.removeClass('hidden').show();
+			$wrapper.find('table').remove();
+			$wrapper.append(table);
+
+			CMS.page.modelImg = table.find('.imgwapper');
+			CMS.page.modelList = table.find('.templateInfo');
+			CMS.page.button = table.find('.btn');
+			A.each(skins, CMS.page.setData);
+
+			CMS.page.table.remove();
+			CMS.page.button = A('.btn');
+			CMS.page.button.live('click',
+				function() {
+					var self = A(this);
+					var templateInfoElement = A('.templateCode:checked')
+							.parent('label').next('select').find('option:selected');
+					window.parent.CMS.main.iframe[0].contentWindow.document.location.replace(contextPath
+						+ "/admin.do?r=desktop_manage/desktop/desktop_pre_add&templateId="
+						+ templateInfoElement.val()+ "&skinId="
+						+ self.attr('skinId')
+						+ "&defaultSkinUrl="
+						+ self.attr('defaultSkinUrl')
+						+ "&templateName="
+						+ templateInfoElement.attr('templateName')
+						+ "&apkVersionCode="
+						+ templateInfoElement.attr('versionCode')
+						+ "&apkVersionName="
+						+ templateInfoElement.attr('versionName')
+						+ "&desktopCategoryFlag=1"
+						+ "&templateCode="
+						+ templateInfoElement.attr('templateCode')
+						+ "&shortcutFlag="
+						+ templateInfoElement.attr('shortcutFlag')
+						+ "&appStaticUpdateFlag="
+						+ templateInfoElement.attr('appStaticUpdateFlag')
+						+ "&versionFlag="
+						+ (A("#templateTab a.general").hasClass('current') ? '1': '2'));
+					return false;
+				});
+		};
+
+		CMS.page.setData = function(i, skin) {
+			var url = (skin.skinEffectPicUrl || CMS.args.EMPTY), indexof = url
+					.lastIndexOf('/') + 1, urlArr = url.split('|'), bigImage = urlArr[0];
+			iconImage = urlArr[1] ? (url.substring(0, indexof) + urlArr[1]): urlArr[0];
+
+			CMS.page.modelImg.eq(i).html(
+							'<img class="radius4" src="' + iconImage + '" ahref="' + bigImage + '">');
+
+			var ul = CMS.page.modelList.eq(i), list = ul.find('li span');
+			list.eq(0).html(skin['skinName']);
+
+			if ((i == 2 || i == 4 || i == 6 || i == 8 || i == 10 || i == 12 || i == 14)
+					&& (i != CMS.page.root.length - 1)) {
+				var td = ul.parents('table').find('td:eq(1)');
+				var width = ul.parents('table').prev().find('td:eq(1)').width();
+			}
+
+			list.eq(1).html(skin['skinDesc']);
+
+			CMS.page.button.eq(i).attr('skinId', skin.skinId || 0)
+					.attr('defaultSkinUrl',encodeURIComponent(skin.skinEffectPicUrl));
+		};
+
+		CMS.page.setTabEvent = function() {
+			A("#tab a.general").live("click", function() {
+				A('#tab a').removeClass('current');
+				A(this).addClass('current');
+				A('#generalTemplates').show();
+				A('#customTemplates').hide();
+			});
+			A("#tab a.custom").live("click", function() {
+				A('#tab a').removeClass('current');
+				A(this).addClass('current');
+				A('#generalTemplates').hide();
+				A('#customTemplates').show();
+			});
+		};
+
+		CMS.page.showTemplate = function(item, container) {
+			var templateInfo = item.templateList[0], versionOptions = [], firstImage;
+			for ( var i = 0; i < item.templateList.length; i++) {
+				var url = item.templateList[i].templateEffectPicUrl || '', imgUrl = (url
+						.split('^')[0] || contextPath
+						+ '/images/screenshot_default.png');
+				if (i == 0) {
+					firstImage = imgUrl;
+				}
+				versionOptions.push('\
+				<option value="'+ item.templateList[i].templateId+ '"\
+				templateId="'+ item.templateList[i].templateId+ '"\
+				templateCode="'+ item.templateList[i].templateCode+ '"\
+				templateName="'+ encodeURIComponent(item.templateList[i].templateName)+ '"\
+				templateEffectPic="'+ encodeURIComponent(imgUrl) + '"\
+				versionCode="'+ item.templateList[i].versionCode+ '"\
+				versionName="'+ item.templateList[i].versionName+ '"\
+				shortcutFlag="'+ item.templateList[i].shortcutFlag+ '"\
+				appStaticUpdateFlag="'+ item.templateList[i].appStaticUpdateFlag+ '">\
+				' + item.templateList[i].versionName+ '\</option>');
+			}
+			var html = '\
+			<li class="radius4">\
+				<div class="templateItem">\
+					<div class="templateHover clickbig">\
+						<div class="bg"></div>\
+						<div class="content">\
+							<ul class="templateInfo">\
+								<li class="name"><label></label>&nbsp;<span>'
+					+ templateInfo.templateName
+					+ '</span></li>\
+								<li class="desc"><label></label>&nbsp;<span>'
+					+ templateInfo.templateDesc
+					+ '</span></li>\
+								<li class="zoomIn"><img src="images/zoom_in.png"></li>\
+							</ul>\
+						</div>\
+					</div>\
+					<div>\
+						<a href="javascript:;" class="imgwapper clickBig">\
+							<img class="radius4" src="'+firstImage+'"/>\
+						</a>\
+					</div>\
+				</div>\
+				<div>\
+					<label><input class="templateCode" name="templateCode" type="radio">'
+					+ CMS.util.stringXZ(8, templateInfo.templateName)
+					+ '</label>\
+					<select>'
+					+ versionOptions.join('')
+					+ '<select>\
+				</div>\
+			</li>';
+			container.append(html);
+		};
+	</script>
+</body>
+</html>

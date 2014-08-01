@@ -1,0 +1,137 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/head"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/head_title_bg"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <!-- 应用名 -->
+
+                <TextView
+                    android:id="@+id/title"
+                    style="@style/textView_marquee"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:textColor="#444444"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+
+                <!-- 返回 -->
+
+                <ImageView
+                    android:id="@+id/goback"
+                    android:layout_width="30dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:clickable="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/goback_selector"
+                    android:visibility="gone" />
+
+                <!-- 标题 -->
+
+                <TextView
+                    android:id="@+id/product_top_title"
+                    style="@style/textView_marquee"
+                    android:layout_width="130dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="3dp"
+                    android:gravity="center_vertical|left"
+                    android:textColor="#555555"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal" >
+
+                <!-- 查找 -->
+
+                <ImageView
+                    android:id="@+id/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="10dp"
+                    android:clickable="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/top_search_selector"
+                    android:visibility="gone" />
+
+                <!-- 我的应用 -->
+
+                <ImageView
+                    android:id="@+id/mail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="10dp"
+                    android:clickable="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/top_mail_selector"
+                    android:visibility="gone" />
+
+                <!-- 反馈 -->
+
+                <ImageView
+                    android:id="@+id/feedback"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="10dp"
+                    android:clickable="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/feedback_selector"
+                    android:visibility="gone" />
+
+                <!-- 分享 -->
+
+                <ImageView
+                    android:id="@+id/share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="10dp"
+                    android:clickable="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/share_selector"
+                    android:visibility="gone" />
+
+                <!-- 设置 -->
+
+                <ImageView
+                    android:id="@+id/setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="10dp"
+                    android:clickable="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/top_setting_selector"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1.5dp"
+        android:background="@drawable/top_bottom_line_gradient" >
+    </LinearLayout>
+
+</LinearLayout>

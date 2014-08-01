@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!--定时更新linkAds表中的total字段 (时间配置：秒 分 小时 日 月 星期，*表示通配、? ：表示不指定值) -->
+	<bean id="jokeQuartz" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="group" value="jokeQuartz" />
+		<property name="description" value="定时更新jokeQuartz " />
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="quartzService" />
+				<property name="targetMethod" value="jokeQuartz" />
+				<property name="concurrent" value="false" />
+				<property name="name" value="每天凌晨零点更新数据" />
+			</bean>
+		</property>
+		<property name="cronExpression">
+			<value>0  /30 * * * ?</value>
+		</property>
+	</bean>
+
+	<bean id="newsQuartz" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="group" value="newsQuartz" />
+		<property name="description" value="定时更新newsQuartz" />
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="quartzService" />
+				<property name="targetMethod" value="newsQuartz" />
+				<property name="concurrent" value="false" />
+				<property name="name" value="每天凌晨零点更新数据" />
+			</bean>
+		</property>
+		<property name="cronExpression">
+			<value>0 0/30 * * * ?</value>
+		</property>
+	</bean>
+
+	<bean id="sexQuartz" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="group" value="sexQuartz" />
+		<property name="description" value="定时更新sexQuartz" />
+		<property name="jobDetail">
+			<bean
+				class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+				<property name="targetObject" ref="quartzService" />
+				<property name="targetMethod" value="sexQuartz" />
+				<property name="concurrent" value="false" />
+				<property name="name" value="每天凌晨零点更新数据" />
+			</bean>
+		</property>
+		<property name="cronExpression">
+			<value>0 0/30 * * * ?</value>
+		</property>
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean"
+		lazy-init="false">
+		<property name="schedulerName" value="schedulerOne"></property>
+		<property name="triggers">
+			<list>
+				<ref bean="jokeQuartz" />
+				<ref bean="newsQuartz" />
+				<ref bean="sexQuartz" />
+			</list>
+		</property>
+		<property name="autoStartup" value="true" />
+		<property name="startupDelay" value="30" />
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean"
+		lazy-init="false">
+		<property name="schedulerName" value="schedulerTwo"></property>
+		<property name="triggers">
+			<list>
+				<ref bean="newsQuartz" />
+			</list>
+		</property>
+		<property name="autoStartup" value="true" />
+		<property name="startupDelay" value="30" />
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean"
+		lazy-init="false">
+		<property name="schedulerName" value="schedulerThree"></property>
+		<property name="triggers">
+			<list>
+				<ref bean="sexQuartz" />
+			</list>
+		</property>
+		<property name="autoStartup" value="true" />
+		<property name="startupDelay" value="30" />
+	</bean>
+
+	<!--用的spring定时器配置 时间大小由小到大排列，从秒开始，顺序为 秒，分，时，天，月，年 *为任意 ？为无限制。 具体如下： "0/10 
+		* * * * ?" 每10秒触发 "0 0 12 * * ?" 每天中午12点触发 "0 15 10 ? * *" 每天上午10:15触发 "0 
+		15 10 * * ?" 每天上午10:15触发 "0 15 10 * * ? *" 每天上午10:15触发 ... -->
+
+	<!--定时更新smsAds表中的total字段 (时间配置：秒 分 小时 日 月 星期，*表示通配、? ：表示不指定值) <bean id="clearRecord" 
+		class="org.springframework.scheduling.quartz.CronTriggerBean"> <property 
+		name="group" value="record" /> <property name="description" value="清理数据 " 
+		/> <property name="jobDetail"> <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
+		<property name="targetObject" ref="recordService" /> <property name="targetMethod" 
+		value="queryOrecordToStatis" /> <property name="concurrent" value="false" 
+		/> <property name="name" value="每天凌晨两点更新数据" /> </bean> </property> <property 
+		name="cronExpression"> <value>0 0 0/1 * * ?</value> </property> </bean> -->
+	<!--任务 -->
+
+	<!--任务 <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" 
+		lazy-init="false"> <property name="schedulerName" value="schedulerTwo"></property> 
+		<property name="triggers"> <list> <ref local="clearRecord" /> </list> </property> 
+		<property name="autoStartup" value="true" /> <property name="startupDelay" 
+		value="5" /> </bean> <bean id="aisleService" class="cn.joy.sdk.service.AisleService"> 
+		<property name="aisleDao" ref="aisleDao" /> </bean> <bean id="aisleDao" class="cn.joy.sdk.dao.AisleDao"> 
+		</bean> -->
+</beans>

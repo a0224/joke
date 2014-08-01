@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">逆袭</string>
+    <string name="noNetwork">网络连接不可用</string>
+    <string name="requestFail">请求失败</string>
+    <string name="loadTimeOut">加载超时</string>
+    <string name="again_exit">再按一次退出</string>
+    <string name="sd_no_found">SD卡不存在</string>
+    <string name="today_sift">今日精选</string>
+    <string name="today_base">最新最热</string>
+    <string name="nonetwork_disabled">请求失败</string>
+    <string name="network_error">网络不可用</string>
+    <string name="mainactivity_nonetwork_dialog_disabled">网络不可用(点继续显示本地数据)</string>
+    <string name="mainactivity_nonetwork_dialog_error">请求失败(点继续显示本地数据)</string>
+    <string name="productactivity_nonetwork_dialog_error">获取详情失败</string>
+    <string name="productlistactivity_nonetwork_dialog_error">获取列表失败</string>
+    <string name="task_is_downloading">游戏已经在任务下载列表中</string>
+    <string name="url_disabled">地址无效</string>
+    <string name="downloading">正在下载</string>
+    <string name="downloaded">下载完毕</string>
+    <string name="refreshtext">正在刷新</string>
+    <string name="loading">正在加载 &#8230;</string>
+    <string name="loadfail">加载失败(点击重试)</string>
+    <string name="findfail">查无记录</string>
+    <string name="commit_comment_large">评论长度不能超过50</string>
+    <string name="down_pull_ref">下拉刷新</string>
+    <string name="release_ref">松开刷新</string>
+    <string name="is_an_icon">这是一张图片资源</string>
+    <string name="version_now">当前版本：</string>
+    <string name="product_load">下载</string>
+    <string name="product_loading">下载中</string>
+    <string name="product_update">升级</string>
+    <string name="nofindapplication">找不到应用程序</string>
+    <string name="share_app_url">http://www.dsgame.cc/shelf/shelf/productInfo.action?productCode=%s</string>
+    <string name="share_app_message">%1$s\n%2$s </string>
+    <string name="share_app_market">骚年，跟我一起来逆袭吧，下载地址:http://bcs.duapp.com/joke-bucket/update/Joke1.0.apk</string>
+    <string name="app_no_more_data">没有更多数据加载</string>
+    <string name="app_loading">当前正在加载中 &#8230;</string>
+    <string name="last_select_one">请至少选择一项:)</string>
+    <string name="retry"> 重 试 </string>
+    <string name="network_retry">网络错误，请重试</string>
+    <string name="copy_succeed">成功复制文字!</string>
+
+    <!-- 产品详情 -->
+    <string name="pro_detail_praise_exists">该笑话已经评论过了</string>
+    <string name="pro_detail_praise_high">好评+1</string>
+    <string name="pro_detail_praise_bad">差评+1</string>
+    <string name="pro_detail_praise_fail">评论失败</string>
+
+    <!-- 用户反馈 -->
+    <string name="feedback_str_name_empty">请输入名称</string>
+    <string name="feedback_str_email_empty">请输入邮箱信息</string>
+    <string name="feedback_str_qq_empty">请输入QQ号码</string>
+    <string name="feedback_str_content_empty">请输入反馈意见</string>
+    <string name="feedback_str_submit_fail">提交反馈信息失败</string>
+    <string name="feedback_str_submit_success">提交反馈信息成功</string>
+    <string name="feedback_str_name_length_tips">名称信息长度不能大于%d个字符</string>
+    <string name="feedback_str_email_length_tips">邮箱信息长度不能大于%d个字符</string>
+    <string name="feedback_str_qq_length_tips">QQ信息长度不能大于%d个字符</string>
+    <string name="feedback_str_content_length_tips">内容信息长度不能大于%d个字符</string>
+    <string name="feedback_str_invalid_qq">输入的QQ格式不正确</string>
+    <string name="feedback_str_invalid_email">输入的Email格式不正确</string>
+
+    <!-- 我的应用 -->
+    <string name="app_btn_check_all">全选</string>
+    <string name="app_btn_check_reverse">反选</string>
+    <string name="app_btn_uninstall">卸载</string>
+    <string name="app_btn_upgrade">升级</string>
+    <string name="app_menu_sort_name">名称</string>
+    <string name="app_menu_sort_time">时间</string>
+    <string name="app_menu_sort_location">位置</string>
+    <string name="app_menu_popup_start"> 启动 </string>
+    <string name="app_menu_popup_uninstall"> 卸载 </string>
+    <string name="app_menu_popup_move"> 移动 </string>
+    <string name="app_menu_popup_detail"> 详情 </string>
+    <string name="app_menu_popup_upgrade"> 升级 </string>
+    <string name="app_list_item_installed">已安装</string>
+    <string name="app_list_item_new">最新</string>
+
+    <!-- 笑话 -->
+    <string name="publish_hint">分享一切有笑点的事情，通过审核后有机会被推荐到首页，注意不要发别人已经发过的老段子。</string>
+
+    <!-- 下拉刷新 -->
+    <string name="pull_to_refresh_label">下拉刷新</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="release_to_refresh_label">松手后刷新</string>
+    <string name="pull_to_refreshing_label">正在刷新</string>
+    <string name="upload_error">上传失败</string>
+    <string name="app_introduction">少年：上帝。我为什么没有女朋友\n上帝：你玩LOL吗\n少年自豪的:必须得玩啊，我钻石段位\n上帝：你用快播吗?\n少年害羞的说：偶尔用用\n上帝：那你能把LOL和快播都卸了吗?\n少年疑问道：那卸了我能干嘛啊。\n上帝：去逆袭啊。\n少年：。。。你妹。</string>
+
+</resources>

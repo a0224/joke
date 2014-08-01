@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:id="@+id/load_error_view"
+	android:layout_width="fill_parent" 
+	android:layout_height="50dip"
+	android:gravity="center_vertical"
+	android:background="#eaeaea"
+>
+	<TextView
+	    android:id="@+id/load_error_title"
+	    android:layout_width="wrap_content"
+	    android:layout_height="35dip"
+	    android:text="@string/network_retry"
+	    android:layout_centerHorizontal="true"
+	    android:gravity="center_vertical"
+	    android:textSize="17sp"
+	    android:textColor="#666666"
+	/>
+	<ImageView
+	    android:id="@+id/load_error_icon"
+	    android:layout_width="30dip"
+	    android:layout_height="30dip"
+	    android:scaleType="fitXY"
+	    android:src="@drawable/error_view_icon" 
+	    android:contentDescription="@null"
+	    android:layout_marginTop="3dip"
+	    android:layout_marginRight="15dip"
+	    android:layout_toLeftOf="@id/load_error_title"
+	/>
+	<Button
+	    android:id="@+id/load_error_buttom"
+	    android:layout_width="70dip"
+	    android:layout_height="30dip"
+	    android:text="@string/retry" 
+	    android:layout_alignParentRight="true"
+	    android:layout_marginRight="15dip"
+	    android:background="@drawable/download_btn_selector"
+	    android:textColor="#ffffff"
+	    android:layout_marginTop="3dip"
+	/>
+</RelativeLayout>

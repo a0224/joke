@@ -1,0 +1,136 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fadingEdge="@null" >
+
+    <RelativeLayout
+        android:id="@+id/about_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dip"
+        android:visibility="visible" >
+
+        <include
+            android:id="@+id/head"
+            layout="@layout/head" />
+
+        <ImageView
+            android:id="@+id/about_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/head"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dip"
+            android:src="@drawable/icon_about" />
+
+        <TextView
+            android:id="@+id/about_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/about_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dip"
+            android:text="@string/app_name"
+            android:textColor="#333333"
+            android:textSize="15dp" />
+
+        <LinearLayout
+            android:id="@+id/about_center_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/about_title"
+            android:layout_marginTop="3dip"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/about_web"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dip"
+                android:layout_marginTop="7dip"
+                android:autoLink="web"
+                android:text="官方网站 : www.diaoshi.com"
+                android:textColor="#333333"
+                android:textColorLink="#3c6ab7"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/about_sina_blog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dip"
+                android:layout_marginTop="7dip"
+                android:autoLink="web"
+                android:text="新浪微博 : www.diaoshi.com"
+                android:textColor="#333333"
+                android:textColorLink="#3c6ab7"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/about_web_mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dip"
+                android:layout_marginTop="7dip"
+                android:autoLink="email"
+                android:text="官方邮箱 : 291162135@qq.com"
+                android:textColor="#333333"
+                android:textColorLink="#3c6ab7"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/about_qq_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dip"
+                android:layout_marginTop="7dip"
+                android:autoLink="email"
+                android:text="屌言屌语QQ群 : 59852168"
+                android:textColor="#333333"
+                android:textColorLink="#3c6ab7"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/about_check"
+            android:layout_width="120dip"
+            android:layout_height="35dip"
+            android:layout_below="@id/about_center_container"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/download_btn_selector"
+            android:text="检测更新"
+            android:textColor="#ffffff" />
+
+        <RelativeLayout
+            android:id="@+id/about_bottom_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/about_check"
+            android:layout_marginBottom="10dip"
+            android:layout_marginTop="10dip" >
+
+            <ImageView
+                android:id="@+id/about_code_icon"
+                android:layout_width="80dip"
+                android:layout_height="90dip"
+                android:layout_marginLeft="20dip"
+                android:layout_marginTop="3dip"
+                android:contentDescription="@null"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/about_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:background="@drawable/about_message_background"
+                android:lineSpacingExtra="3dip"
+                android:padding="8dip"
+                android:text="         本软件的下载、安装和使用完全免费，不收取任何费用，下载使用过程中产生的移动网络数据流量费用，由当地的运营商收取。"
+                android:textColor="#333333" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

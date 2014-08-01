@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="default" namespace="/" extends="sdk">
+	
+		<default-interceptor-ref name="sessionCheckStack" />
+
+		<!-- 页面 -->
+		<action name="error" class="com.joke.action.user.LoginAction"
+			method="systemerror">
+		</action>
+
+		<!-- 登陆页面 -->
+		<action name="index" class="com.joke.action.user.LoginAction"
+			method="isLogin">
+			<result name="failed">/login.jsp</result>
+			<result name="success" type="redirect">main.html</result>
+		</action>
+
+		<!-- 主页 -->
+		<action name="main" class="com.joke.action.user.LoginAction"
+			method="isLogin">
+			<result name="success">/jsp/index.jsp</result>
+			<result name="failed" type="redirect">index.html</result>
+		</action>
+
+		<!-- 登陆 -->
+		<action name="login" class="com.joke.action.user.LoginAction">
+			<result name="nosuccess" type="redirect">index.html</result>
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message,menulist</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 退出 -->
+		<action name="loginOut" class="com.joke.action.user.LoginAction"
+			method="loginOut">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 验证码 -->
+		<action name="validateCode" class="com.joke.action.user.ValidateImageAction">
+			<param name="width">80</param>
+			<param name="height">35</param>
+			<param name="length">4</param>
+			<result name="success" type="stream">
+				<param name="inputName">inputStream</param>
+				<param name="contentType">image/jpeg</param>
+			</result>
+		</action>
+
+		<!--获取session用户信息 -->
+		<action name="getUserInfo" class="com.joke.action.user.UserManageAction"
+			method="userInfo">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message,data.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 修改用户密码 -->
+		<action name="userPwdEdit" class="com.joke.action.user.UserManageAction"
+			method="userPwdEdit">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+	</package>
+
+</struts>

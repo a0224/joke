@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- 设置缓存提供者 -->
+		<property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+		<!-- 开启二级缓存 -->
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+
+		<mapping class="com.joke.pojo.UserPojo" />
+		<mapping class="com.joke.pojo.MenuPojo" />
+		<mapping class="com.joke.pojo.RolePojo" />
+		<mapping class="com.joke.pojo.RoleMenuPojo" />
+		
+		<mapping class="com.joke.pojo.CityInfoPojo"/>
+		<mapping class="com.joke.pojo.ProvinceInfoPojo"/>
+		
+		<mapping class="com.joke.pojo.JokePojo"/>
+		<mapping class="com.joke.pojo.NewsPojo"/>
+		<mapping class="com.joke.pojo.SexyPojo"/>
+		<mapping class="com.joke.pojo.AppPojo"/>
+		<mapping class="com.joke.pojo.JarPojo"/>
+		<mapping class="com.joke.pojo.JokeBase"/>
+		
+		
+
+		<!--指定哪些实体需要使用二级缓存 
+		<class-cache class="cn.joy.pojo.CloudCategoryPojo" usage="read-only" />-->
+	</session-factory>
+
+</hibernate-configuration>

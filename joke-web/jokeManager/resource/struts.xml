@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!--ognl 注入静态方法 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<!--Action的国际化以及xml的国际化 -->
+	<constant name="struts.custom.i18n.resources" value="resources" />
+	<!--struts2 ognl 调用静态方法 -->
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<!-- 如果用户需要指定多个请求后缀，则多个后缀之间以英文逗号（,）隔开。 -->
+	<constant name="struts.action.extension" value="html" />
+	<!-- 设置浏览器是否缓存静态内容,默认值为true(生产环境下使用),开发阶段最好关闭 -->
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<!-- 当struts的配置文件修改后,系统是否自动重新加载该文件,默认值为false(生产环境下使用),开发阶段最好打开 -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<!-- 开发模式下使用,这样可以打印出更详细的错误信息 -->
+	<constant name="struts.devMode" value="false" />
+	<!-- 默认的视图主题 -->
+	<constant name="struts.ui.theme" value="simple" />
+	<!--<constant name="struts.objectFactory" value="spring" /> -->
+	<!--解决乱码 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 指定允许上传的文件最大字节数。默认值是2097152(2M) -->
+	<constant name="struts.multipart.maxSize" value="1209715200" />
+	<!-- 设置上传文件的临时文件夹,默认使用javax.servlet.context.tempdir -->
+	<constant name="struts.multipart.saveDir" value="/data/uploads/temp" />
+	<!-- 上传文件解析器 -->
+	<constant name="struts.multipart.parser" value="jakarta" />
+
+	<!-- package settings -->
+	<package name="sdk" namespace="/" extends="struts-default,json-default">
+
+		<interceptors>
+			<!-- session超时 -->
+			<interceptor name="sessionCheckInterceptor"
+				class="com.joke.interceptor.SessionCheckInterceptor" />
+			<interceptor name="roleCheckInterceptor"
+				class="com.joke.interceptor.RoleCheckInterceptor" />
+			<!-- 拦截器栈 -->
+			<interceptor-stack name="sessionStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="json" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="sessionCheckInterceptor" />
+			</interceptor-stack>
+
+			<!-- 拦截器栈 -->
+			<interceptor-stack name="sessionCheckStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="json" />
+				<interceptor-ref name="timer" />
+			</interceptor-stack>
+
+			<!-- 拦截器栈 -->
+			<interceptor-stack name="roleCheckStack">
+				<interceptor-ref name="sessionCheckInterceptor" />
+				<interceptor-ref name="roleCheckInterceptor" />
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="json" />
+				<interceptor-ref name="timer" />
+			</interceptor-stack>
+
+		</interceptors>
+
+		<default-interceptor-ref name="sessionCheckStack" />
+
+		<global-results>
+			<!--<result name="maintenance" type="redirect">/jsp/error/maintenance.jsp
+			</result>
+			 系统错误 
+			<result name="systemerror" type="redirect">/jsp/error/systemerror.jsp
+			</result>-->
+			<!-- session超时 <result name="sessiontimout" type="chain">index</result> 
+			<result name="sessiontimout" type="redirect">/jsp/error/systemerror.jsp
+			</result>-->
+			<result name="json_500" type="json">
+				<param name="root">dataMap</param>
+			</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping result="systemerror" exception="java.lang.Exception"></exception-mapping>
+			<exception-mapping result="json_500"
+				exception="cn.joy.interceptor.JsonHandlerException" />
+		</global-exception-mappings>
+
+	</package>
+
+	<include file="struts_user.xml" />
+	<include file="struts_log.xml" />
+	<include file="struts_default.xml" />
+	<include file="struts_menu.xml" />
+	<include file="struts_common.xml" />
+	<include file="struts_joke.xml" />
+
+
+
+</struts>

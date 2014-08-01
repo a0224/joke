@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="  
+     http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd  
+     http://www.springframework.org/schema/aop   http://www.springframework.org/schema/aop/spring-aop.xsd
+     http://www.springframework.org/schema/tx    http://www.springframework.org/schema/tx/spring-tx.xsd  
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.joke" />
+	<!-- <context:annotation-config /> -->
+	<!-- 事务（注解 ） -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:jdbc_alrdsmysql.properties</value>
+		</property>
+	</bean>
+
+	<!-- 数据源配置, 使用c3p0数据库连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<!-- Connection Info -->
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<!-- c3p0的配置 -->
+		<property name="maxPoolSize" value="${c3p0.pool.size.max}" />
+		<property name="minPoolSize" value="${c3p0.pool.size.min}" />
+		<property name="initialPoolSize" value="${c3p0.pool.size.init}" />
+		<property name="acquireIncrement" value="${c3p0.pllo.size.increment}" />
+		<property name="maxIdleTime" value="${c3p0.pllo.size.maxIdleTime}" />
+
+	</bean>
+
+	<!-- 配置SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:hibernate.model.xml" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- - - - - - - spring Transaction Manager - - - - - - - -->
+	<!-- 配置spring的事务管理器，以下为针对jdbc所使用的事务管理器，如果针对其他的 如hibernate，可配置其他对应的事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!--配置HibernateTemplate，用于完成数据操作 -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<!-- the transactional semantics... -->
+		<tx:attributes>
+			<!-- all methods starting with '*' are read-only -->
+			<tx:method name="*" rollback-for="java.lang.Exception"
+				propagation="SUPPORTS" read-only="true" />
+			<!-- other methods use the default transaction settings (see below) -->
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="create*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="businessService" expression="execution(* com.joke.service.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="businessService" />
+	</aop:config>
+
+</beans>

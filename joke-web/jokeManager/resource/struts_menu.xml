@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- 用户信息 -->
+	<package name="menu_page" namespace="/menu" extends="sdk">
+
+		<action name="menuManager" class="com.joke.action.user.MenuAction"
+			method="pageSkip">
+			<result name="success"> /jsp/userManage/menuManager.jsp</result>
+		</action>
+
+		<action name="menuEdit" class="com.joke.action.user.MenuAction"
+			method="pageSkip">
+			<result name="success"> /jsp/userManage/menuEdit.jsp</result>
+		</action>
+
+		<action name="roleManager" class="com.joke.action.user.MenuAction"
+			method="pageSkip">
+			<result name="success"> /jsp/userManage/roleManager.jsp</result>
+		</action>
+
+		<action name="roleMenuPage" class="com.joke.action.user.MenuAction"
+			method="pageSkip">
+			<result name="success"> /jsp/userManage/roleMenuPage.jsp</result>
+		</action>
+
+		<action name="menuListPage" class="com.joke.action.user.MenuAction"
+			method="pageSkip">
+			<result name="success"> /jsp/userManage/menuList.jsp</result>
+		</action>
+
+		<action name="roleEdit" class="com.joke.action.user.MenuAction"
+			method="pageSkip">
+			<result name="success"> /jsp/userManage/roleEdit.jsp</result>
+		</action>
+
+
+
+	</package>
+
+	<!-- 用户信息 -->
+	<package name="menu" namespace="/menu" extends="sdk,json-default">
+
+		<default-interceptor-ref name="roleCheckStack" />
+
+		<!-- 列表 -->
+		<action name="menuList" class="com.joke.action.user.MenuAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,totalProperty,root.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 列表 -->
+		<action name="parentMenuList" class="com.joke.action.user.MenuAction"
+			method="parentMenuList">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,totalProperty,root.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+		<!-- 根据id获取 -->
+		<action name="menuInfoById" class="com.joke.action.user.MenuAction"
+			method="menuInfoById">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,totalProperty,data.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 添加 -->
+		<action name="addMenu" class="com.joke.action.user.MenuAction"
+			method="addMenu">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 删除 -->
+		<action name="delMemu" class="com.joke.action.user.MenuAction"
+			method="delMemu">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 更新 -->
+		<action name="updateMenu" class="com.joke.action.user.MenuAction"
+			method="updateMenu">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+
+		<!-- 列表 -->
+		<action name="roleMenuList" class="com.joke.action.user.RoleMenuAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,totalProperty,menuList.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 根据id获取 -->
+		<action name="roleMenuInfoById" class="com.joke.action.user.RoleMenuAction"
+			method="roleMenuInfoById">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,totalProperty,data.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 添加 -->
+		<action name="addRoleMemu" class="com.joke.action.user.RoleMenuAction"
+			method="addRoleMemu">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 添加 -->
+		<action name="addRoleMemuMore" class="com.joke.action.user.RoleMenuAction"
+			method="addRoleMemuMore">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+
+		<!-- 删除 -->
+		<action name="delRoleMenu" class="com.joke.action.user.RoleMenuAction"
+			method="delRoleMenu">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 更新 -->
+		<action name="updateRoleMemu" class="com.joke.action.user.RoleMenuAction"
+			method="updateRoleMemu">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 更新 -->
+		<action name="roleInfoList" class="com.joke.action.user.RoleAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message,totalProperty,root.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+
+		<action name="roleInfoById" class="com.joke.action.user.RoleAction"
+			method="roleInfoById">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message,data.*</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 更新 -->
+		<action name="addRole" class="com.joke.action.user.RoleAction"
+			method="addRole">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 更新 -->
+		<action name="delRole" class="com.joke.action.user.RoleAction"
+			method="delRole">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+		<!-- 更新 -->
+		<action name="updateRole" class="com.joke.action.user.RoleAction"
+			method="updateRole">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="failed" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+
+
+
+
+
+
+
+
+	</package>
+
+</struts>

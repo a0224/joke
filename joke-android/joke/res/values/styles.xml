@@ -1,0 +1,128 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+ 
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+ 
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="android:Theme.Light">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- 黑屏 -->
+    <style name="blockBg" parent="android:Theme.Light">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <!-- 评分星值(大) -->
+    <style name="CommentRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/comment_rating_bar</item>
+        <item name="android:minHeight">30dp</item>
+        <item name="android:maxHeight">30dp</item>
+    </style>
+
+    <!-- 评分星值(小) -->
+    <style name="CommentRatingBarSmall" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/comment_rating_small_bar</item>
+        <item name="android:minHeight">14dp</item>
+        <item name="android:maxHeight">14dp</item>
+    </style>
+
+    <!-- TextView省略号 -->
+    <style name="textView_point">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- TextView跑马灯 -->
+    <style name="textView_marquee">
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+    </style>
+
+    <!-- indexpopwidnow 显示消失 动画 -->
+    <style name="indexpopwindow_anim_style">
+        <item name="android:windowEnterAnimation">@anim/slide_down</item>
+        <item name="android:windowExitAnimation">@anim/slide_up</item>
+    </style>
+
+    <!-- 首页菜单 显示消失 动画 -->
+    <style name="menu_anim_style">
+        <item name="android:windowEnterAnimation">@anim/in_left</item>
+        <item name="android:windowExitAnimation">@anim/out_right</item>
+    </style>
+
+    <!-- select_menu_textview -->
+    <style name="select_menu_textview" parent="android:Widget.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/select_menu_item_text</item>
+        <item name="android:layout_width">140dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@drawable/select_menu_selector</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <!-- 网络设置自定义对话框 -->
+    <style name="network_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/network_dialog_gradient</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- loading对话框 -->
+    <style name="loading_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/loading_dialog_bg</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- search对话框 -->
+    <style name="search_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/loading_dialog_bg</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- comment对话框 -->
+    <style name="comment_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/loading_dialog_bg</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <!-- publish对话框 -->
+    <style name="publish_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/loading_dialog_bg</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- ListView PopupWindow动画效果 -->
+    <style name="ListView_PopupWindow_Top_Animation">
+        <item name="android:windowEnterAnimation">@anim/listview_popup_top_show</item>
+        <item name="android:windowExitAnimation">@anim/listview_popup_top_hide</item>
+    </style>
+
+    <style name="ListView_PopupWindow_Bottom_Animation">
+        <item name="android:windowEnterAnimation">@anim/listview_popup_bottom_show</item>
+        <item name="android:windowExitAnimation">@anim/listview_popup_bottom_hide</item>
+    </style>
+
+    <style name="Transparent">
+        <item name="android:windowBackground">@color/transparent_background</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@+android:style/Animation.Translucent</item>
+    </style>
+
+    <style name="list_empty_view">
+         <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+</resources>
