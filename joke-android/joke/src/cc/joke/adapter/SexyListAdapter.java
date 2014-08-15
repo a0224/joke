@@ -1,7 +1,6 @@
 package cc.joke.adapter;
 
 import java.util.List;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +24,7 @@ import cc.joke.util.Util;
 import cc.joke.view.ImageGridView;
 import cc.joke.wiipay.Wiipay;
 import cc.joke.wiipay.Wiipay.PayListener;
+import cc.joke.util.StringUtils;
 
 /**
  * 两性数据适配器
@@ -97,7 +97,7 @@ public class SexyListAdapter extends BaseAdapter
         else
         {
             setVisibility(viewHolder.mContentView, View.VISIBLE);
-            viewHolder.mContentView.setText(obj.getDescription());
+            viewHolder.mContentView.setText("    "+StringUtils.omitString(obj.getDescription(),130));
         }
         
         String source = SouEnum.getSourceName(obj.getSource());

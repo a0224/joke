@@ -52,7 +52,8 @@
                 android:listSelector="@color/transparent"
                 android:numColumns="3"
                 android:stretchMode="columnWidth"
-                android:verticalSpacing="2dip" >
+                android:verticalSpacing="2dip"
+                android:paddingTop="8dip" >
             </cc.joke.view.ImageGridView>
         </LinearLayout>
 

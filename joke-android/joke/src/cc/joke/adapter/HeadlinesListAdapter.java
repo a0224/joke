@@ -17,6 +17,7 @@ import cc.joke.activity.HeadlinesDetailActivity;
 import cc.joke.adapter.ImageGridViewAdapter.DownLoadImageListener;
 import cc.joke.entity.T_Headlines;
 import cc.joke.util.SouEnum;
+import cc.joke.util.StringUtils;
 import cc.joke.util.Util;
 import cc.joke.view.ImageGridView;
 
@@ -59,7 +60,7 @@ public class HeadlinesListAdapter extends BaseAdapter
         final ViewHolder viewHolder;
         if (convertView == null)
         {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.headlines_list_item, null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.headlines_list_item1, null);
             viewHolder = new ViewHolder();
             viewHolder.mItemView = convertView.findViewById(R.id.list_item_view);
             viewHolder.mIconView = (ImageView) convertView.findViewById(R.id.list_item_icon);
@@ -91,7 +92,7 @@ public class HeadlinesListAdapter extends BaseAdapter
         else
         {
             setVisibility(viewHolder.mContentView, View.VISIBLE);
-            viewHolder.mContentView.setText(obj.getDescription());
+            viewHolder.mContentView.setText(StringUtils.omitString(obj.getDescription(), -1));
         }
 
         String source = SouEnum.getSourceName(obj.getSource());

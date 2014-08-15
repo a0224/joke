@@ -102,7 +102,8 @@ public class ImageGridViewAdapter extends BaseAdapter
 						}
 						return;
 					}
-					imageView.getLayoutParams().height = GlobalApplication.widthPixels * bm.getHeight() / bm.getWidth();
+					imageView.getLayoutParams().height = Double.valueOf((GlobalApplication.widthPixels * bm.getHeight() / bm.getWidth())*0.9).intValue();
+					imageView.getLayoutParams().width = Double.valueOf((GlobalApplication.widthPixels*0.9)).intValue();
 				
 					ImageGridViewAdapter.this.notifyDataSetChanged();
 				}

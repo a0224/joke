@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import android.os.Build;
 import cc.joke.application.GlobalApplication;
 import cc.joke.common.Constants;
+import cc.joke.debug.Logger;
 import cc.joke.entity.T_Activation;
 import cc.joke.util.Util;
 
@@ -64,6 +65,7 @@ public class ActivationRequest extends BaseRequest
         }
         catch (Exception e)
         {
+        	Logger.error(e);
             e.printStackTrace();
         }
         return false;

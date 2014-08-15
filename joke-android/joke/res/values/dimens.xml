@@ -7,11 +7,11 @@
     <dimen name="list_item_joke_title_txt_size">12sp</dimen>
     <dimen name="list_item_joke_content_txt_size">18sp</dimen>
     
-    <dimen name="list_item_headlines_title_txt_size">18sp</dimen>
-    <dimen name="list_item_headlines_content_txt_size">16sp</dimen>
+    <dimen name="list_item_headlines_title_txt_size">16sp</dimen>
+    <dimen name="list_item_headlines_content_txt_size">12sp</dimen>
     
     <dimen name="list_item_sexy_title_txt_size">18sp</dimen>
-    <dimen name="list_item_sexy_content_txt_size">16sp</dimen>
+    <dimen name="list_item_sexy_content_txt_size">14sp</dimen>
     
     <dimen name="list_item_source_txt_size">10sp</dimen>
     

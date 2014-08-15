@@ -31,6 +31,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import cc.joke.R;
+import cc.joke.activity.AboutActivity.CheckThread;
 import cc.joke.adapter.MyFragmentPagerAdapter;
 import cc.joke.application.GlobalApplication;
 import cc.joke.cache.BitmapCache;
@@ -71,6 +72,8 @@ public class SlidingActivity extends FragmentActivity
 
     // 是否正在加载的标识
     private boolean isLoadFlag = true;
+    
+    private LoadingDialog mDialog;
 
     // 滚球个数
     private Integer[] balls = {R.id.ball1, R.id.ball2, R.id.ball3, R.id.ball4, R.id.ball5, R.id.ball6};
@@ -177,7 +180,7 @@ public class SlidingActivity extends FragmentActivity
                     CheckClient cc = (CheckClient) msg.obj;
                     if (cc != null)
                     {
-                        showCheckMessage(cc);
+                        new VerCheDilog().showCheckMessage(cc,SlidingActivity.this,(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE));
                     }
                     break;
                 case 9:
@@ -241,6 +244,30 @@ public class SlidingActivity extends FragmentActivity
             }
         }
     };
+    
+    
+    private Handler checkHandler = new Handler()
+    {
+        public void handleMessage(android.os.Message msg)
+        {
+            if (mDialog != null)
+            {
+                mDialog.dismiss();
+                mDialog = null;
+            }
+            switch (msg.what)
+            {
+                case 0:break;
+                case 1:
+                    CheckClient cc = (CheckClient) msg.obj;
+                    if (cc != null)
+                    {
+                        new VerCheDilog().showCheckMessage(cc,SlidingActivity.this,(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE));
+                    }
+                    break;
+            }
+        };
+    };
 
     public boolean getTitleVisiable()
     {
@@ -302,6 +329,14 @@ public class SlidingActivity extends FragmentActivity
                 new ActivationRequest().activation();
             }
         });
+        
+    	if (Util.isNetworkConnected())
+        {
+    	    mDialog = new LoadingDialog(SlidingActivity.this);
+            mDialog.show();
+            ThreadPool.add(new CheckThread());
+        }
+
 
         // 初始化
         ThreadPool.add(new InitThread());
@@ -931,40 +966,35 @@ public class SlidingActivity extends FragmentActivity
             return false;
     }
 
-    private void showCheckMessage(final CheckClient cc)
+    class CheckThread implements Runnable
     {
-        mMessageDialog = new Dialog(this);
-        mMessageDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = layoutInflater.inflate(R.layout.check_client_dialog, null);
-        Button updateButton = (Button) contentView.findViewById(R.id.check_client_update);
-        updateButton.setOnClickListener(new Button.OnClickListener()
+        public void run()
         {
-            public void onClick(View v)
+            CheckClientRequest request = new CheckClientRequest();
+            int versionCode = 0;
+            try
             {
-                JokeDownloadManager.getInstance().startApk(cc);
-                mMessageDialog.dismiss();
-                mMessageDialog = null;
+                PackageInfo pkg = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_ACTIVITIES);
+                if (pkg != null)
+                {
+                    versionCode = pkg.versionCode;
+                }
             }
-        });
-        Button cancelButton = (Button) contentView.findViewById(R.id.check_client_cancel);
-        cancelButton.setOnClickListener(new Button.OnClickListener()
-        {
-            public void onClick(View v)
+            catch (Exception ex)
             {
-                mMessageDialog.dismiss();
-                mMessageDialog = null;
+                ex.printStackTrace();
             }
-        });
-        TextView text = (TextView) contentView.findViewById(R.id.check_client_message);
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("新版本:").append(cc.getVersionName()).append("\n").append(cc.getDescription());
-        text.setText(buffer.toString());
-        mMessageDialog.setContentView(contentView);
-        mMessageDialog.show();
-        Window window = mMessageDialog.getWindow();
-        WindowManager.LayoutParams lp = window.getAttributes();
-        lp.width = (int) (GlobalApplication.widthPixels * 0.9);
-        window.setAttributes(lp);
+            CheckClient cc = request.getCheckClient(versionCode);
+            if (cc == null)
+            {
+            }
+            else
+            {
+                Message msg = new Message();
+                msg.what = 1;
+                msg.obj = cc;
+                checkHandler.sendMessage(msg);
+            }
+        }
     }
 }

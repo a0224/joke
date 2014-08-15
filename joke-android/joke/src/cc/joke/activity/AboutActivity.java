@@ -60,7 +60,7 @@ public class AboutActivity extends BaseActivity
                     CheckClient cc = (CheckClient) msg.obj;
                     if (cc != null)
                     {
-                        showCheckMessage(cc);
+                        new VerCheDilog().showCheckMessage(cc,AboutActivity.this,(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE));
                     }
                     break;
             }
@@ -128,40 +128,6 @@ public class AboutActivity extends BaseActivity
         lp.topMargin = (int) (h * 0.05);
     }
 
-    private void showCheckMessage(final CheckClient cc)
-    {
-        mMessageDialog = new Dialog(this);
-        mMessageDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = layoutInflater.inflate(R.layout.check_client_dialog, null);
-        Button updateButton = (Button) contentView.findViewById(R.id.check_client_update);
-        updateButton.setOnClickListener(new Button.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-
-            }
-        });
-        Button cancelButton = (Button) contentView.findViewById(R.id.check_client_cancel);
-        cancelButton.setOnClickListener(new Button.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                mMessageDialog.dismiss();
-                mMessageDialog = null;
-            }
-        });
-        TextView text = (TextView) contentView.findViewById(R.id.check_client_message);
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("新版本:").append(cc.getVersionName()).append("\n").append(cc.getDescription());
-        text.setText(buffer.toString());
-        mMessageDialog.setContentView(contentView);
-        mMessageDialog.show();
-        Window window = mMessageDialog.getWindow();
-        WindowManager.LayoutParams lp = window.getAttributes();
-        lp.width = (int) (GlobalApplication.widthPixels * 0.9);
-        window.setAttributes(lp);
-    }
 
     /** 检测更新事件监听处理器 **/
     private Button.OnClickListener mCheckListener = new Button.OnClickListener()
