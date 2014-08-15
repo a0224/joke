@@ -236,7 +236,7 @@ public class PublishActivity extends BaseActivity implements PullAndRefreshListV
     {
         if (!Util.isNetworkConnected())
         {
-            Toast.makeText(this, "请设置网络！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "请检查网络！", Toast.LENGTH_SHORT).show();
             mHandler.sendEmptyMessage(-1);
             return;
         }

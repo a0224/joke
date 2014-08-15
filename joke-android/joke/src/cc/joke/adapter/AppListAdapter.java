@@ -86,7 +86,7 @@ public class AppListAdapter extends BaseAdapter
                 @Override
                 public void onClick(View v)
                 {
-                    JokeDownloadManager.getInstance().startApk(app);
+                    JokeDownloadManager.getInstance().startApk(app.getBaseUrl(),app.getName());
                 }
             });
         }

@@ -22,12 +22,28 @@ public class Logger
             Log.i("==========>>>" + tag + "<<<==========", str);
         }
     }
+    
+    public static void i(String str)
+    {
+        if (DEBUG)
+        {
+            Log.i("==========>>>", str);
+        }
+    }
 
     public static void e(String tag, String str)
     {
         if (DEBUG)
         {
             Log.e("==========>>>" + tag + "<<<==========", str);
+        }
+    }
+    
+    public static void e(String str)
+    {
+        if (DEBUG)
+        {
+            Log.e("==========>>>", str);
         }
     }
 

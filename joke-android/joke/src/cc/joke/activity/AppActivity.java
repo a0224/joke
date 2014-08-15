@@ -168,7 +168,7 @@ public class AppActivity extends BaseActivity implements PullAndRefreshListViewL
     {
         if (!Util.isNetworkConnected())
         {
-            Toast.makeText(this, "请设置网络！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "请检查网络！", Toast.LENGTH_SHORT).show();
             mHandler.sendEmptyMessage(-1);
             return;
         }
@@ -229,7 +229,7 @@ public class AppActivity extends BaseActivity implements PullAndRefreshListViewL
         // 标题
         TextView titleView = (TextView) findViewById(R.id.product_top_title);
         titleView.setVisibility(View.VISIBLE);
-        titleView.setText("我的应用");
+        titleView.setText("热门应用");
 
         mListview = (PullToRefreshListView) findViewById(R.id.listView);
         mAdapter = getAdapter(AppActivity.this, mDataList);

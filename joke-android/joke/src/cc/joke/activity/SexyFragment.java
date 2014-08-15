@@ -221,7 +221,7 @@ public class SexyFragment extends Fragment implements PullAndRefreshListViewList
     {
         if (!Util.isNetworkConnected())
         {
-            Toast.makeText(getActivity(), "请设置网络！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "请检查网络！", Toast.LENGTH_SHORT).show();
             mHandler.sendEmptyMessage(-1);
             return;
         }

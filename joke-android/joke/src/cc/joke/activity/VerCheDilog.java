@@ -1,7 +1,11 @@
 package cc.joke.activity;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -10,14 +14,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import cc.joke.R;
 import cc.joke.application.GlobalApplication;
+import cc.joke.debug.Logger;
 import cc.joke.entity.CheckClient;
 import cc.joke.util.JokeDownloadManager;
+import cc.joke.util.ThreadPool;
+import cc.joke.util.Util;
 
 public class VerCheDilog {
 	
     private Dialog mMessageDialog;
 	
-    public void showCheckMessage(final CheckClient cc,Activity activity, LayoutInflater layoutInflater)
+    public void showCheckMessage(final CheckClient cc,final Activity activity, LayoutInflater layoutInflater)
     {
         mMessageDialog = new Dialog(activity);
         mMessageDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -27,7 +34,7 @@ public class VerCheDilog {
         {
             public void onClick(View v)
             {
-                JokeDownloadManager.getInstance().startApk(cc);
+				JokeDownloadManager.getInstance().startApk(cc.getBaseUrl(),cc.getVersionName());
                 mMessageDialog.dismiss();
                 mMessageDialog = null;
             }
@@ -53,10 +60,5 @@ public class VerCheDilog {
         lp.width = (int) (GlobalApplication.widthPixels * 0.9);
         window.setAttributes(lp);
     }
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
+    
 }

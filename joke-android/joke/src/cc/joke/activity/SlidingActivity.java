@@ -1,5 +1,6 @@
 package cc.joke.activity;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -330,12 +332,13 @@ public class SlidingActivity extends FragmentActivity
             }
         });
         
-    	if (Util.isNetworkConnected())
-        {
-    	    mDialog = new LoadingDialog(SlidingActivity.this);
-            mDialog.show();
-            ThreadPool.add(new CheckThread());
-        }
+		if (Util.isNetworkConnected()) {
+			mDialog = new LoadingDialog(SlidingActivity.this);
+			mDialog.show();
+			ThreadPool.add(new CheckThread());
+		} else {
+			Toast.makeText(this, "请检查网络！", Toast.LENGTH_SHORT).show();
+		}
 
 
         // 初始化
@@ -997,4 +1000,5 @@ public class SlidingActivity extends FragmentActivity
             }
         }
     }
+    
 }
