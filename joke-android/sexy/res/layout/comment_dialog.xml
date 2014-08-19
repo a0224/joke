@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#02cccccc" >
+
+    <RelativeLayout
+        android:id="@+id/line"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/comment_edit_bg"
+        android:layout_alignParentBottom="true"
+        android:padding="5dp" >
+
+        <TextView
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="3dp"
+            android:text="我的评论"
+            android:textColor="#dd000000"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/comment_content"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="65dp"
+            android:layout_toLeftOf="@+id/btn_send"
+            android:background="@drawable/comment_edittext_bg"
+            android:hint="发送评论"
+            android:padding="3dp"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_alignBaseline="@+id/comment_content"
+            android:layout_alignBottom="@+id/comment_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/download_btn_selector"
+            android:text="发送"
+            android:textColor="@color/product_download_btn_text_color" />
+    </RelativeLayout>
+
+</RelativeLayout>

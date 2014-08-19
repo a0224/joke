@@ -1,0 +1,24 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_image_line_bg"
+    android:padding="1dp" >
+
+    <ImageView
+        android:id="@+id/image_src"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/image_title"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:background="@color/main_bg"
+        android:gravity="bottom|right"
+        android:paddingBottom="3dp"
+        android:paddingRight="3dp"
+        android:textColor="@color/main_image_text" />
+
+</FrameLayout>

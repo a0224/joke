@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#02cccccc" >
+    
+    <LinearLayout
+        android:id="@+id/send_layout"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="#cccccccc"
+        android:layout_height="@dimen/publish_send_layout_height"
+        android:padding="5dp">
+        
+       <HorizontalScrollView 
+           android:layout_width="0dip"
+                android:layout_height="@dimen/publish_send_images_height" 
+                 android:layout_weight="1"
+                 android:scrollbars="none"
+                >
+           <LinearLayout
+                android:id="@+id/send_images"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" 
+                android:orientation="horizontal">
+ 
+            </LinearLayout>
+       </HorizontalScrollView>
+
+       <Button
+           android:id="@+id/send_btn"
+           android:layout_width="60dp"
+           android:layout_height="@dimen/publish_send_btn_height"
+           android:layout_gravity="center"
+           android:background="@drawable/download_btn_selector"
+           android:text="发送" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/send_layout"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical"
+        android:background="#cccccccc"
+        android:padding="5dp" >
+
+        <EditText
+            android:id="@+id/publish_edit"
+            android:layout_width="match_parent"
+            android:layout_height="100dip"
+            android:gravity="top"
+            android:background="@drawable/comment_edittext_bg"
+            android:hint="我来发布"
+            android:padding="3dp"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</RelativeLayout>

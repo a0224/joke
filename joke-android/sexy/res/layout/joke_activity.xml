@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <!-- 引用头部 -->
+
+    <include layout="@layout/head" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <android.support.v4.view.PagerTabStrip
+            android:id="@+id/pager_title_strip"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_gravity="top"
+            android:background="@drawable/top_tab_item_gradient"
+            android:scrollbarSize="0.1dp"
+            android:textColor="#ff7300" />
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>

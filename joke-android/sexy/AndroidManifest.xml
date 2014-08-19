@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cc.joke"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="15" />
+
+    <application
+        android:name="cc.joke.application.GlobalApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="WIIPAY_APP_ID"
+            android:value="97cda61dc9900e8c44fe70bf91eadc70" />
+        <meta-data
+            android:name="WIIPAY_CHANNEL_CODE"
+            android:value="200000" />
+
+        <!-- 首页 -->
+        <activity
+            android:name="cc.joke.activity.SlidingActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:hardwareAccelerated="false"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/blockBg"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 产品详情 -->
+        <activity
+            android:name="cc.joke.activity.JokeDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label=""
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- 关于 -->
+        <activity
+            android:name="cc.joke.activity.AboutActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label=""
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- 我的应用 -->
+        <activity
+            android:name="cc.joke.activity.AppActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label=""
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- 我的发布 -->
+        <activity
+            android:name="cc.joke.activity.PublishActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label=""
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- 消息列表 -->
+        <activity
+            android:name="cc.joke.activity.NewsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label=""
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- 消息详情 -->
+        <activity
+            android:name="cc.joke.activity.NewsDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label=""
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- 两性详情 -->
+        <activity
+            android:name="cc.joke.activity.SexyDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label=""
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name="cc.joke.activity.ShowWebImageActivity"
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Transparent" >
+        </activity>
+
+        <!-- 头条详情 -->
+        <activity
+            android:name="cc.joke.activity.HeadlinesDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label=""
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- 登陆 -->
+        <activity
+            android:name="cc.joke.activity.LoginActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label=""
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- QQ登陆 -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1101767429 " /> <!-- AppId -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- 下载服务 -->
+        <service
+            android:name="cc.joke.service.DownloadService"
+            android:enabled="true"
+            android:process="system" >
+            <intent-filter>
+                <action android:name="cc.dsgamemarket.service.downloadService" />
+            </intent-filter>
+        </service>
+        <service android:name="cc.joke.service.DsGameMarketService" />
+
+        <!-- 消息广播 -->
+        <receiver android:name="cc.joke.receiver.NetworkReceiver" >
+            <intent-filter android:priority="2147483647" >
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.ANY_DATA_STATE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- wiipay -->
+        <service android:name="com.bx.pay.WpaySmsService" >
+            <intent-filter>
+                <action android:name="com.bx.pay.WpaySmsService" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="com.bx.pay.SmsListener"
+            android:label="Sms listener" >
+            <intent-filter android:priority="10000" >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.bx.sdk.UpActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+
+        <!-- 帷千动媒广告 -->
+        <activity
+            android:name="com.wqmobile.sdk.WQActionHandler"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="com.wqmobile.sdk.WQBrowser"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        <meta-data
+            android:name="WQ_CHANNEL"
+            android:value="mm1" />
+
+        <!-- ======  baidu push ======== -->
+        
+        <activity
+            android:name="cc.joke.activity.PushMessageActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" 
+            android:configChanges="orientation|keyboardHidden"
+            android:label=""
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- push富媒体，不使用富媒体推送不需要 -->
+        <activity
+            android:name="com.baidu.android.pushservice.richmedia.MediaViewActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="MediaViewActivity" >
+        </activity>
+        <activity
+            android:name="com.baidu.android.pushservice.richmedia.MediaListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="MediaListActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- push富媒体结束 -->
+
+
+        <!-- push应用定义消息receiver声明 -->
+        <receiver android:name="cc.joke.receiver.MyPushMessageReceiver" >
+            <intent-filter>
+
+                <!-- 接收push消息 -->
+                <action android:name="com.baidu.android.pushservice.action.MESSAGE" />
+                <!-- 接收bind,unbind,fetch,delete等反馈消息 -->
+                <action android:name="com.baidu.android.pushservice.action.RECEIVE" />
+                <action android:name="com.baidu.android.pushservice.action.notification.CLICK" />
+            </intent-filter>
+        </receiver>
+
+        <!-- push必须的receviver和service声明 -->
+        <receiver
+            android:name="com.baidu.android.pushservice.PushServiceReceiver"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.baidu.android.pushservice.action.notification.SHOW" />
+                <action android:name="com.baidu.android.pushservice.action.media.CLICK" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.baidu.android.pushservice.RegistrationReceiver"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.METHOD" />
+                <action android:name="com.baidu.android.pushservice.action.BIND_SYNC" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.baidu.android.pushservice.PushService"
+            android:exported="true"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />
+            </intent-filter>
+        </service>
+        <!-- push结束 -->
+
+
+        <!-- 在百度开发者中心查询应用的API Key -->
+        <meta-data
+            android:name="api_key"
+            android:value="IosjtEqLu0Qh7GITUgixyicH" />
+        <meta-data
+            android:name="BaiduPush_CHANNEL"
+            android:value="91 " />
+
+        <!-- =========  baidu push ========= -->
+
+    </application>
+
+    <!-- <uses-permission android:name="android.permission.INSTALL_PACKAGES"/> -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- 帷千动媒广告 -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+</manifest>
