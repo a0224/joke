@@ -39,6 +39,7 @@ import cc.joke.application.GlobalApplication;
 import cc.joke.cache.BitmapCache;
 import cc.joke.debug.Logger;
 import cc.joke.dialog.LoadingDialog;
+import cc.joke.dialog.VerCheDilog;
 import cc.joke.entity.CheckClient;
 import cc.joke.entity.ListType;
 import cc.joke.http.ActivationRequest;
