@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cc.joke"
-    android:versionCode="1"
+    android:versionCode="2"
     android:versionName="1.0" >
 
     <uses-sdk
@@ -41,6 +41,14 @@
         <!-- 产品详情 -->
         <activity
             android:name="cc.joke.activity.JokeDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label=""
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        
+        <activity
+            android:name="cc.joke.activity.JokeImgDetailActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label=""
             android:launchMode="singleTask"
