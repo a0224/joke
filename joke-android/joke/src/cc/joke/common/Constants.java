@@ -25,6 +25,9 @@ public class Constants
 
     /** 笑话列表ID **/
     public static final String OP_JOKE = "joke";
+    
+    /** 笑话列表ID **/
+    public static final String OP_JOKE_IMAG = "jokeimag";
 
     /** 笑话详细ID **/
     public static final String OP_JOKE_INFO = "jokeinfo";
@@ -67,6 +70,9 @@ public class Constants
 
     /** 笑话列表URL **/
     public static final String OP_JOKE_URL = HOST + "?op=" + OP_JOKE;
+    
+    /** 图片笑话列表URL **/
+    public static final String OP_JOKE_IMAG_URL = HOST + "?op=" + OP_JOKE_IMAG;
 
     /** 笑话详细URL **/
     public static final String OP_JOKE_INFO_URL = HOST + "?op=" + OP_JOKE_INFO;

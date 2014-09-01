@@ -359,6 +359,8 @@ public class DBHelper extends SQLiteOpenHelper
         db.execSQL("create table T_LOGIN(_id integer primary key,status integer,userid integer,username varchar(50),usericon varchar(150),openid varchar(100),token varchar(100))");
         // //笑话列表配置表
         db.execSQL("create table T_JOKEINFO(_id integer primary key,id integer,title varchar(50),type varchar(50),iconUrl varchar(50),imgUrl varchar(50),description varchar(200),dspImages varchar(100),talknum integer,highPraise integer,badPraise integer,source integer)");
+        // //笑话列表配置表
+        db.execSQL("create table T_JOKEIMGINFO(_id integer primary key,id integer,title varchar(50),type varchar(50),iconUrl varchar(50),imgUrl varchar(50),description varchar(200),dspImages varchar(100),talknum integer,highPraise integer,badPraise integer,source integer)");
         // 消息表
         db.execSQL("create table T_MARKET_MESSAGE(_id integer primary key,msg_name varchar(100),msg_type integer,msg_network integer,msg_title varchar(100),msg_content varchar(255),cmd_target varchar(50),msg_pic varchar(50),used_time integer,unused_time integer,sort integer,createtime integer,modifytime integer)");
         // 头条表
@@ -410,6 +412,7 @@ public class DBHelper extends SQLiteOpenHelper
     {
         db.execSQL("DROP TABLE IF EXISTS T_LOGIN");
         db.execSQL("DROP TABLE IF EXISTS T_JOKEINFO");
+        db.execSQL("DROP TABLE IF EXISTS T_JOKEIMGINFO");
         db.execSQL("DROP TABLE IF EXISTS T_HEADLINES");
         db.execSQL("DROP TABLE IF EXISTS T_SEXY");
         db.execSQL("DROP TABLE IF EXISTS T_PAY");

@@ -153,6 +153,7 @@ public class SlidingActivity extends FragmentActivity
                     // fragments.add(new MainFragment(SlidingActivity.this,
                     // endIndexOver));
                     fragments.add(new JokeFragment());
+                    fragments.add(new JokeImgFragment());
                     fragments.add(new HeadlinesFragment());
                     fragments.add(new SexyFragment());
                     for (int i = 0; i < ListType.typeStr.values().length; i++)
@@ -259,7 +260,7 @@ public class SlidingActivity extends FragmentActivity
             }
             switch (msg.what)
             {
-                case 0:break;
+                case 0:Toast.makeText(SlidingActivity.this, "当前是最新版本!", Toast.LENGTH_SHORT).show();break;
                 case 1:
                     CheckClient cc = (CheckClient) msg.obj;
                     if (cc != null)
@@ -988,15 +989,14 @@ public class SlidingActivity extends FragmentActivity
                 ex.printStackTrace();
             }
             CheckClient cc = request.getCheckClient(versionCode);
-            if (cc == null)
-            {
-            }
-            else
+            if (cc != null && cc.getVersionCode() > versionCode)
             {
                 Message msg = new Message();
                 msg.what = 1;
                 msg.obj = cc;
                 checkHandler.sendMessage(msg);
+            }else{
+                mDialog.dismiss();
             }
         }
     }
