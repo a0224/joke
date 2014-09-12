@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/main_icon_bg"
+    android:orientation="horizontal"
+    android:paddingLeft="2dp"
+    android:paddingTop="10dp" >
+
+    <ImageView
+        android:id="@+id/today_best"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/loading_background" >
+    </ImageView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="3dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:src="@drawable/loading_background"
+            android:text="@string/today_sift"
+            android:textColor="@color/today_sift_big_title"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@string/today_base"
+            android:textColor="@color/today_sift_middle_title"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>

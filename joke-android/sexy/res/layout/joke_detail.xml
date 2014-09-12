@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ScrollView
+        android:id="@+id/joke_srcoll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/joke_whole_block"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/joke_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textColor="@color/product_explain"
+                android:textSize="@dimen/list_item_joke_content_txt_size" />
+
+            <cc.joke.view.ShowGallery
+                android:id="@+id/joke_showImage"
+                android:layout_width="fill_parent"
+                android:layout_height="190dp"
+                android:layout_margin="8dp"
+                android:spacing="5dp" />
+
+            <LinearLayout
+                android:id="@+id/joke_showImage_ball"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

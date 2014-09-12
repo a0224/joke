@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/initWindow"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFd5f1fc" >
+
+    <LinearLayout
+        android:id="@+id/loading_balls"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="75dp"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/ball1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ball_2" />
+
+        <ImageView
+            android:id="@+id/ball2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ball_1" />
+
+        <ImageView
+            android:id="@+id/ball3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ball_1" />
+
+        <ImageView
+            android:id="@+id/ball4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ball_1" />
+
+        <ImageView
+            android:id="@+id/ball5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ball_1" />
+
+        <ImageView
+            android:id="@+id/ball6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ball_1" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/illustration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+    
+    <TextView
+        android:id="@+id/introduction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" 
+        android:text="@string/app_introduction"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="80dip"
+        android:layout_height="35dip"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="75dp"
+        android:background="@drawable/btn_selector"
+        android:visibility="gone"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:text="开始" />
+
+</RelativeLayout>

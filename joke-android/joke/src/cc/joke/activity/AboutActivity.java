@@ -24,6 +24,7 @@ import cc.joke.R;
 import cc.joke.application.GlobalApplication;
 import cc.joke.common.Constants;
 import cc.joke.dialog.LoadingDialog;
+import cc.joke.dialog.VerCheDilog;
 import cc.joke.entity.CheckClient;
 import cc.joke.http.CheckClientRequest;
 import cc.joke.util.ThreadPool;

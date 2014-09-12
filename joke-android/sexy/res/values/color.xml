@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="main_bg">#555555</color>
+    <color name="network_dialog_bg">#99000000</color>
+    <color name="network_error_text">#ff7300</color>
+    <color name="main_image_line_bg">#999999</color>
+    <color name="main_image_text">#cccccc</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_background">#80000000</color>
+    <color name="today_sift_big_title">#f3f3f3</color>
+    <color name="today_sift_middle_title">#919191</color>
+    <color name="main_icon_bg">#323232</color>
+    <color name="menu_pop_bg">#cc000000</color>
+    <color name="menu_pop_item_click">#cccccccc</color>
+    <color name="menu_grid_text">#ffffff</color>
+    <color name="search_pop_bg">#55000000</color>
+    <color name="comment_edit_bg">#ddcccccc</color>
+    <color name="head_title_bg">#FFd5f1fc</color>
+    <color name="product_title">#2a2a2a</color>
+    <color name="product_dsp">#939393</color>
+    <color name="product_explain_title">#ff7300</color>
+    <color name="product_explain">#393939</color>
+    <color name="product_download_btn_text_color">#ffffff</color>
+    <color name="product_download_layout_bg">#f0f0f0</color>
+    <color name="product_comment_line">#d9d9d9</color>
+    <color name="select_menu_item_bg">#c7000000</color>
+    <color name="select_menu_item_checked_bg">#d7000000</color>
+    <color name="list_item_title">#333333</color>
+    <color name="list_item_type">#919191</color>
+    <color name="list_is_free">#59b35e</color>
+    <color name="listview_comment_bg">#f7f7f7</color>
+    <color name="listview_select_normal_bg">#eeeeee</color>
+    <color name="listview_select_bg">#eeeeff</color>
+    
+    <color name="select_menu_item_text">#ffffff</color>
+    <color name="select_menu_item_text_checked">#ff7300</color>
+    <color name="select_menu_line">#363636</color>
+
+    <!-- 我的应用ListView Header的边框颜色 -->
+    <color name="app_list_view_header_border">#d8d8d8</color>
+    <color name="app_list_view_header_text">#c27c49</color>
+    <color name="sort_icon_border">#c7c7c7</color>
+    <color name="sort_icon">#848484</color>
+    <color name="sort_icon_selected">#d09847</color>
+
+    <!-- 右侧菜单颜色 -->
+    <color name="right_menu_list_text_pressed">#ffffff</color>
+    <color name="right_menu_list_text">#e3e3e3</color>
+    <color name="right_menu_list_split_1">#33333333</color>
+    <color name="right_menu_list_split_2">#55777777</color>
+
+</resources>

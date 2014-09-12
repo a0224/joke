@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/network_dialog_gradient"
+    android:id="@+id/check_client_root"
+    >
+    <TextView 
+    	android:id="@+id/check_client_message"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:text="新版本:V2.0.1" 
+    	android:lineSpacingExtra="5dip"
+    	android:padding="10dip"
+    	android:textColor="#ffffff"
+    />
+    <LinearLayout
+        android:id="@+id/check_client_dialog_botton_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dip"
+        android:gravity="center"
+        android:layout_below="@id/check_client_message"
+        android:paddingBottom="10dip"
+    >
+        <Button
+            android:id="@+id/check_client_update"
+            android:layout_width="110dip"
+            android:layout_height="35dip"
+            android:background="@drawable/btn_selector"
+            android:text="  更新  " 
+            android:textColor="#ffffff"
+        />
+        <Button
+            android:id="@+id/check_client_cancel"
+            android:layout_width="110dip"
+            android:layout_height="35dip"
+            android:background="@drawable/btn_selector"
+            android:text="  取消  " 
+            android:layout_marginLeft="20dip"
+            android:textColor="#ffffff"
+        />
+    </LinearLayout>
+</RelativeLayout>
